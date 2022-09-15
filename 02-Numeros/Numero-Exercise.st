@@ -345,6 +345,11 @@ isZero
 
 	self subclassResponsibility ! !
 
+
+!Numero methodsFor: 'fraccion initialization' stamp: 'MMM 9/15/2022 13:05:46'!
+verifyAsDivisor
+	self subclassResponsibility.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Numero class' category: 'Numero-Exercise'!
@@ -452,12 +457,9 @@ hash
 	^value hash! !
 
 
-!Entero methodsFor: 'initialization' stamp: 'JL 9/13/2022 18:06:11'!
-initalizeWith: aValue 
-	(aValue < 0) ifTrue: [^Negativos with: aValue].
-	(aValue = 0) ifTrue: [^Cero with: aValue].
-	(aValue = 1) ifTrue: [^Uno with: aValue].
-	(aValue > 1) ifTrue: [	^ MayoresAUno with: aValue]! !
+!Entero methodsFor: 'initialization' stamp: 'MMM 9/15/2022 15:03:09'!
+initializeWith: aValue 
+	value:=aValue.! !
 
 
 !Entero methodsFor: 'value' stamp: 'HernanWilkinson 5/7/2016 21:02'!
@@ -489,6 +491,24 @@ isZero
 	
 	^self subclassResponsibility ! !
 
+
+!Entero methodsFor: 'fraccion initialization' stamp: 'JL 9/15/2022 15:59:22'!
+initializeFraccionUnder: aNumerator	
+	^Fraccion new initializeWith: aNumerator over: self.! !
+
+!Entero methodsFor: 'fraccion initialization' stamp: 'JL 9/15/2022 15:49:45'!
+initializeOver: aDivisor
+	^ self subclassResponsibility.! !
+
+!Entero methodsFor: 'fraccion initialization' stamp: 'JL 9/15/2022 15:59:22'!
+initializeUnder: aDividend	
+	|greatestCommonDivisor numerator denominator|
+	greatestCommonDivisor := aDividend greatestCommonDivisorWith: self. 
+	numerator := aDividend // greatestCommonDivisor.
+	denominator := self // greatestCommonDivisor.
+	
+	^denominator initializeFraccionUnder: numerator.! !
+
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
 !classDefinition: 'Entero class' category: 'Numero-Exercise'!
@@ -499,13 +519,15 @@ Entero class
 negativeFibonacciErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
-!Entero class methodsFor: 'instance creation' stamp: 'HernanWilkinson 5/7/2016 22:53'!
+!Entero class methodsFor: 'instance creation' stamp: 'MMM 9/15/2022 15:02:44'!
 with: aValue 
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
-	
-	^self new initalizeWith: aValue! !
+	(aValue < 0) ifTrue: [^Negativos new initializeWith: aValue].
+	(aValue = 0) ifTrue: [^Cero new initializeWith: aValue].
+	(aValue = 1) ifTrue: [^Uno new initializeWith: aValue].
+	(aValue > 1) ifTrue: [	^ MayoresAUno new initializeWith: aValue].! !
 
 
 !classDefinition: #Cero category: 'Numero-Exercise'!
@@ -527,16 +549,18 @@ Entero subclass: #Cero
 - aSubtrahend 
 	^aSubtrahend negated! !
 
+!Cero methodsFor: 'arithmetic operations' stamp: 'JL 9/15/2022 15:43:21'!
+divideAFraccion: aFraccionDividend
+	^self error: Numero canNotDivideByZeroErrorDescription.! !
+
+!Cero methodsFor: 'arithmetic operations' stamp: 'JL 9/15/2022 15:42:56'!
+divideAnEntero: anEnteroDividend
+	^self error: Numero canNotDivideByZeroErrorDescription.! !
+
 !Cero methodsFor: 'arithmetic operations' stamp: 'JL 9/12/2022 21:43:07'!
 fibonacci
 
 	^Uno with: 1! !
-
-
-!Cero methodsFor: 'initialization' stamp: 'JL 9/12/2022 21:43:53'!
-initalizeWith: aValue 
-	
-	value := aValue! !
 
 
 !Cero methodsFor: 'testing' stamp: 'JL 9/14/2022 18:47:34'!
@@ -554,6 +578,21 @@ isZero
 	
 	^true! !
 
+
+!Cero methodsFor: 'initialization' stamp: 'MMM 9/15/2022 15:03:09'!
+initializeWith: aValue 
+	
+	value := aValue! !
+
+
+!Cero methodsFor: 'fraccion initialization' stamp: 'JL 9/15/2022 15:54:44'!
+initializeOver: aDivisor
+	^self.! !
+
+!Cero methodsFor: 'fraccion initialization' stamp: 'MMM 9/15/2022 15:26:13'!
+verifyAsDivisor
+	^ self error: Numero canNotDivideByZeroErrorDescription.! !
+
 
 !classDefinition: #DistintosACero category: 'Numero-Exercise'!
 Entero subclass: #DistintosACero
@@ -561,6 +600,19 @@ Entero subclass: #DistintosACero
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
+
+!DistintosACero methodsFor: 'testing' stamp: 'MMM 9/15/2022 15:05:03'!
+isZero
+	^false.! !
+
+
+!DistintosACero methodsFor: 'fraccion initialization' stamp: 'JL 9/15/2022 15:57:15'!
+initializeOver: aDivisor
+	^aDivisor initializeUnder: self.! !
+
+!DistintosACero methodsFor: 'fraccion initialization' stamp: 'MMM 9/15/2022 13:09:04'!
+verifyAsDivisor
+	^self.! !
 
 
 !classDefinition: #Negativos category: 'Numero-Exercise'!
@@ -580,22 +632,22 @@ isOne
 	
 	^false! !
 
-!Negativos methodsFor: 'testing' stamp: 'JL 9/14/2022 18:48:32'!
-isZero
-	
-	^false! !
-
-
-!Negativos methodsFor: 'initialization' stamp: 'JL 9/12/2022 21:29:58'!
-initalizeWith: aValue 
-	
-	value := aValue! !
-
 
 !Negativos methodsFor: 'arithmetic operations' stamp: 'JL 9/12/2022 21:31:30'!
 fibonacci
 
 	self error: Entero negativeFibonacciErrorDescription! !
+
+
+!Negativos methodsFor: 'initialization' stamp: 'MMM 9/15/2022 15:03:09'!
+initializeWith: aValue 
+	
+	value := aValue! !
+
+
+!Negativos methodsFor: 'fraccion initialization' stamp: 'JL 9/15/2022 15:57:15'!
+initializeUnder: aDividend
+	^aDividend negated / self negated! !
 
 
 !classDefinition: #Positivos category: 'Numero-Exercise'!
@@ -610,14 +662,9 @@ isNegative
 	
 	^false! !
 
-!Positivos methodsFor: 'testing' stamp: 'JL 9/14/2022 18:48:39'!
-isZero
-	
-	^false! !
 
-
-!Positivos methodsFor: 'initialization' stamp: 'JL 9/12/2022 21:30:02'!
-initalizeWith: aValue 
+!Positivos methodsFor: 'initialization' stamp: 'MMM 9/15/2022 15:03:09'!
+initializeWith: aValue 
 	
 	value := aValue! !
 
@@ -629,15 +676,8 @@ Positivos subclass: #MayoresAUno
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!MayoresAUno methodsFor: 'arithmetic operations' stamp: 'JL 9/13/2022 18:08:36'!
-fibonacci
-
-	^ (self - (Uno with: 1)) fibonacci + (self - (MayoresAUno with: 2)) fibonacci
-		! !
-
-
-!MayoresAUno methodsFor: 'initialization' stamp: 'JL 9/12/2022 21:30:13'!
-initalizeWith: aValue 
+!MayoresAUno methodsFor: 'initialization' stamp: 'MMM 9/15/2022 15:03:09'!
+initializeWith: aValue 
 	
 	value := aValue! !
 
@@ -647,6 +687,13 @@ isOne
 	
 	^false! !
 
+
+!MayoresAUno methodsFor: 'arithmetic operations' stamp: 'JL 9/13/2022 18:08:36'!
+fibonacci
+
+	^ (self - (Uno with: 1)) fibonacci + (self - (MayoresAUno with: 2)) fibonacci
+		! !
+
 
 !classDefinition: #Uno category: 'Numero-Exercise'!
 Positivos subclass: #Uno
@@ -655,8 +702,8 @@ Positivos subclass: #Uno
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Uno methodsFor: 'initialization' stamp: 'JL 9/12/2022 21:43:58'!
-initalizeWith: aValue 
+!Uno methodsFor: 'initialization' stamp: 'MMM 9/15/2022 15:03:09'!
+initializeWith: aValue 
 	
 	value := aValue! !
 
@@ -675,6 +722,11 @@ isOne
 fibonacci
 
 	^self! !
+
+
+!Uno methodsFor: 'fraccion initialization' stamp: 'JL 9/15/2022 15:59:22'!
+initializeFraccionUnder: aNumerator	
+	^aNumerator.! !
 
 
 !classDefinition: #Fraccion category: 'Numero-Exercise'!
@@ -780,6 +832,10 @@ initializeWith: aNumerator over: aDenominator
 	numerator := aNumerator.
 	denominator := aDenominator ! !
 
+!Fraccion methodsFor: 'initialization' stamp: 'MMM 9/15/2022 13:08:42'!
+verifyAsDivisor
+	^ self.! !
+
 
 !Fraccion methodsFor: 'testing' stamp: 'NR 9/23/2018 23:41:38'!
 isNegative
@@ -811,22 +867,10 @@ printOn: aStream
 Fraccion class
 	instanceVariableNames: ''!
 
-!Fraccion class methodsFor: 'intance creation' stamp: 'JL 9/14/2022 19:40:35'!
+!Fraccion class methodsFor: 'instance creation' stamp: 'JL 9/15/2022 15:49:46'!
 with: aDividend over: aDivisor
-"	^aDivisor divides: aDividend"
+	aDivisor verifyAsDivisor.
+	^aDividend initializeOver: aDivisor.
 	
-	| greatestCommonDivisor numerator denominator |
 	
-	aDivisor isZero ifTrue: [ self error: self canNotDivideByZeroErrorDescription ].
-	aDividend isZero ifTrue: [ ^aDividend ].
-	
-	aDivisor isNegative ifTrue:[ ^aDividend negated / aDivisor negated].
-	
-	greatestCommonDivisor := aDividend greatestCommonDivisorWith: aDivisor. 
-	numerator := aDividend // greatestCommonDivisor.
-	denominator := aDivisor // greatestCommonDivisor.
-	
-	denominator isOne ifTrue: [ ^numerator ].
-
-	^self new initializeWith: numerator over: denominator
-	! !
+! !
