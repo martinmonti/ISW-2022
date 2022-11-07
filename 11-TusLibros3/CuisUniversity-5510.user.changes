@@ -5966,3 +5966,2083 @@ PASSED!
 PASSED!
 
 ----SNAPSHOT----(7 November 2022 13:13:16) CuisUniversity-5510.image priorSource: 7488797!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:16:18'!
+test09_AddItem_CanNoAddToAnExpiredCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNoAddToAnExpiredCart stamp: 'MMM 11/7/2022 13:16:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:16:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:16:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:16:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNoAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:16:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:16:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:16:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:16:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:16:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNoAddToAnExpiredCart stamp: 'MMM 11/7/2022 13:16:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNoAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:16:38'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:16:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:16:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:16:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNoAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:16:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:16:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:16:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:16:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:16:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNoAddToAnExpiredCart stamp: 'MMM 11/7/2022 13:16:39'!
+PASSED!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:16:43' prior: 50564855!
+test04_AddItem_CanNoAddToAnInvalidCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'. 
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:29:15'!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'. 
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+
+!methodRemoval: UserInterfaceTest #test04_AddItem_CanNoAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:29:15'!
+test04_AddItem_CanNoAddToAnInvalidCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'. 
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:29:21'!
+test09_AddItem_CanNotAddToAnExpiredCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+
+!methodRemoval: UserInterfaceTest #test09_AddItem_CanNoAddToAnExpiredCart stamp: 'MMM 11/7/2022 13:29:21'!
+test09_AddItem_CanNoAddToAnExpiredCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:31:29' prior: 50566534!
+test09_AddItem_CanNotAddToAnExpiredCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage]
+! !
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 13:32:24'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartForCartId catalog maxCartIdUsed purchasesForClientId clientIdForCartId maxTransactionIdUsed merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 13:32:24' prior: 50566164!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartForCartId := Dictionary new.
+	purchasesForClientId := Dictionary new.
+	clientIdForCartId := Dictionary new.
+	maxCartIdUsed := 0.	
+	maxTransactionIdUsed := 0.	
+	merchantProcessor:= MerchantProcessorSimulator for:[ :anAmount :aCreditCard | ].! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 13:32:24' prior: 50565448!
+createCartFor: userId authenticatedWith: password 
+	"user == client"
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	clientIdForCartId at: actualCartId put: userId.
+	^maxCartIdUsed.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 13:32:24' prior: 50566230!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier clientId |
+	cart := cartForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	clientId := clientIdForCartId at: aCartId ifAbsent: ["ERROR"].
+	(purchasesForClientId includesKey: clientId) ifFalse: [purchasesForClientId at: clientId put: OrderedCollection new.].
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: merchantProcessor 
+		on: DateAndTime now
+		registeringOn: (purchasesForClientId at: clientId).
+	cashier checkOut.
+	^self newTransactionId! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 13:32:24' prior: 50560696!
+listCart: aCartId
+ 	| cart |
+	cart := cartForCartId at: aCartId ifAbsent: [^self error: self class cartIdNotExistsErrorMessage].
+	^cart list! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 13:32:24' prior: 50560704!
+addToCart: aCartId item: anItem withQuantityOf: aQuantity 
+	| cart |
+	cart := cartForCartId at: aCartId ifAbsent: [^self error: self class cartIdNotExistsErrorMessage].
+	cart add: aQuantity of: anItem.! !
+
+!methodRemoval: UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCart stamp: 'MMM 11/7/2022 13:33:26'!
+test09_AddItem_CanNotAddToAnExpiredCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage]
+!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:37:37' prior: 50566493!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz password userId aCartId authenticator quantityOfSelledBookInCart |
+
+userId := 'Pepe'. 
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+quantityOfSelledBookInCart:=interfaz quantityOf: selledBook in:aCartId.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:38:28' prior: 50566697!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz password userId aCartId authenticator quantityOfSelledBookInCart |
+
+userId := 'Pepe'. 
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+quantityOfSelledBookInCart:=interfaz quantityOf: selledBook in:aCartId.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage.
+			self assert: (interfaz quantityOf: selledBook in:aCartId) equals: quantityOfSelledBookInCart. ]
+! !
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:38:32'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:38:32'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:38:32'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:38:32'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:38:32'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:38:32'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:38:32'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:38:32'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:38:32'!
+ERROR!
+!UserInterface methodsFor: 'testing' stamp: 'MMM 11/7/2022 13:38:43'!
+quantityOf: selledBook in: aCartId 
+	self shouldBeImplemented.! !
+!UserInterface methodsFor: 'testing' stamp: 'MMM 11/7/2022 13:39:34' prior: 50566779!
+quantityOf: selledBook in: aCartId 
+	^(cartForCartId at: aCartId ) quantityFor: selledBook.! !
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:39:38'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:39:52'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:39:52'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:39:52'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:39:52'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:39:52'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:39:52'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:39:52'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:39:52'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:39:52'!
+ERROR!
+!UserInterface methodsFor: 'testing' stamp: 'MMM 11/7/2022 13:41:06' prior: 50566784!
+quantityOf: selledBook in: aCartId 
+	^(cartForCartId at: aCartId ) ocurrencesOf: selledBook.! !
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:41:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:41:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:41:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:41:15'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:41:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:41:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:41:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:41:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:41:15'!
+ERROR!
+!UserInterface methodsFor: 'testing' stamp: 'MMM 11/7/2022 13:41:45' prior: 50566825!
+quantityOf: selledBook in: aCartId 
+	^(cartForCartId at: aCartId ) occurrencesOf: selledBook.! !
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:42:00'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:42:00'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:42:00'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:42:00'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:42:00'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:42:00'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:42:00'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:42:00'!
+PASSED!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:43:56' prior: 50566721!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'. 
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage.]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:44:11' prior: 50566897!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz password userId authenticator |
+
+userId := 'Pepe'. 
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage.]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:44:35' prior: 50566918!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage.]
+! !
+
+!classDefinition: #UserInterfaceTest category: 'TusLibros' stamp: 'MMM 11/7/2022 13:46:09'!
+TestCase subclass: #UserInterfaceTest
+	instanceVariableNames: 'testObjectsFactory authenticationBehavior debitBehavior selledBook selledBookPrice anotherSelledBook notSelledBook catalog creditCard anotherSelledBookPrice validUserId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #UserInterfaceTest category: 'TusLibros' stamp: 'MMM 11/7/2022 13:46:11'!
+TestCase subclass: #UserInterfaceTest
+	instanceVariableNames: 'testObjectsFactory authenticationBehavior debitBehavior selledBook selledBookPrice anotherSelledBook notSelledBook catalog creditCard anotherSelledBookPrice validUserId validUserPassword'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterfaceTest methodsFor: 'setup' stamp: 'MMM 11/7/2022 13:46:06' prior: 50564783 overrides: 16961394!
+setUp
+	testObjectsFactory := StoreTestObjectsFactory new.
+	
+	selledBook:=testObjectsFactory itemSellByTheStore.
+	selledBookPrice:=testObjectsFactory itemSellByTheStorePrice .
+	anotherSelledBook:=testObjectsFactory anotherItemSellByTheStore.
+	anotherSelledBookPrice:=testObjectsFactory anotherItemSellByTheStorePrice .
+	notSelledBook:=testObjectsFactory itemNotSellByTheStore .
+	catalog:=testObjectsFactory defaultCatalog.
+	creditCard := testObjectsFactory notExpiredCreditCard.
+	
+	validUserId:= 'Pepe'.
+	validUserPassword:='pepe123'.
+		
+	authenticationBehavior := [ :anUser :aPassword | ].
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:47:07' prior: 50565029!
+test01_CreateCart_CanNotWhitInvalidUser
+
+| interfaz authenticator |
+
+authenticator := AuthenticateSimulator for: false.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+
+self should: [ interfaz createCartFor: validUserId authenticatedWith: validUserPassword .]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface invalidUserErrorMessage]! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:47:34' prior: 50564821!
+test02_ListCart_WithNewCartReturnsEmptyList
+
+| interfaz cartId authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+
+self assert: (interfaz listCart: cartId) equals: OrderedCollection new.! !
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:47:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:47:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:47:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:47:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:47:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:47:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:47:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:47:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:47:36'!
+PASSED!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:48:37' prior: 50564948!
+test03_ListCart_RemembersAddedItems
+
+| interfaz aCartId authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: aCartId item: selledBook withQuantityOf: 1.
+
+self assert: (interfaz listCart: aCartId) equals: (OrderedCollection with: selledBook).! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:48:59' prior: 50564704!
+test05_ListCart_CanNotListInvalidCart
+
+| interfaz aCartId authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+
+self should: [ interfaz listCart: 3.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:49:12' prior: 50567080!
+test05_ListCart_CanNotListInvalidCart
+
+| interfaz authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+
+self should: [ interfaz listCart: 3.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:49:43' prior: 50565190!
+test07_ListPurchases_MakeListForOneSale
+
+| interfaz cartId authenticator purchasesList |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: cartId charging: creditCard .
+
+purchasesList:=interfaz listPurchases: validUserId .
+
+self assert: (purchasesList purchasesItems) size equals:1.
+self assert: (purchasesList includeSellFor: selledBook) equals:true.
+self assert: (purchasesList quantityFor:selledBook) equals:1.
+self assert: (purchasesList includeSellFor:notSelledBook) equals:false.
+self assert: (purchasesList quantityFor:notSelledBook) equals:0.
+self assert: (purchasesList totalAmmount) equals: selledBookPrice.
+! !
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:49:45'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:49:45'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:49:45'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:49:45'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:49:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:49:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:49:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:49:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:49:46'!
+PASSED!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:50:32' prior: 50565310!
+test08_ListPurchases_MakeListForManySales
+
+|authenticator interfaz firstCartId secondCartId purchasesList |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+
+firstCartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: firstCartId item: selledBook withQuantityOf: 10.
+interfaz addToCart: firstCartId item: anotherSelledBook withQuantityOf: 20.
+interfaz checkOutCart: firstCartId charging: creditCard .
+
+secondCartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: secondCartId item: selledBook withQuantityOf: 5.
+interfaz checkOutCart: secondCartId charging: creditCard .
+
+purchasesList:=interfaz listPurchases: validUserId .
+
+self assert: (purchasesList purchasesItems) size equals:2.
+self assert: (purchasesList includeSellFor: selledBook) equals:true.
+self assert: (purchasesList quantityFor:selledBook) equals:15.
+self assert: (purchasesList includeSellFor: anotherSelledBook ) equals:true.
+self assert: (purchasesList quantityFor:anotherSelledBook) equals:20.
+self assert: (purchasesList includeSellFor:notSelledBook) equals:false.
+self assert: (purchasesList quantityFor:notSelledBook) equals:0.
+self assert: (purchasesList totalAmmount) equals: (selledBookPrice*15+(anotherSelledBookPrice*20)).
+! !
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:50:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:50:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:50:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:50:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:50:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:50:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:50:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:50:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:50:35'!
+PASSED!
+
+----SNAPSHOT----(7 November 2022 13:51:13) CuisUniversity-5510.image priorSource: 7511332!
+
+!methodRemoval: UserInterface class #withAuthenticator: stamp: 'MMM 11/7/2022 13:56:35'!
+withAuthenticator: anAuthenticateSimulator 
+	^self new initializeWithAuthenticator: anAuthenticateSimulator !
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:56:38'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:56:38'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:56:38'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:56:38'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:56:38'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:56:38'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:56:38'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:56:38'!
+PASSED!
+!UserInterface class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 13:57:38'!
+withAuthenticator: anAuthenticateSimulator catalog: aCatalog timeProvider: aTimeProvider  
+	^self new initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog ! !
+
+!methodRemoval: UserInterface class #withAuthenticator:catalog: stamp: 'MMM 11/7/2022 13:57:38'!
+withAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	^self new initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog !
+!UserInterface class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 13:58:03' prior: 50567290!
+withAuthenticator: anAuthenticateSimulator catalog: aCatalog timeProvider: aTimeProvider  
+	^self new initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog timeProvider: aTimeProvider.! !
+!UserInterface methodsFor: 'initialization' stamp: 'MMM 11/7/2022 13:58:18'!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog timeProvider: aTimeProvider
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartForCartId := Dictionary new.
+	purchasesForClientId := Dictionary new.
+	clientIdForCartId := Dictionary new.
+	maxCartIdUsed := 0.	
+	maxTransactionIdUsed := 0.	
+	merchantProcessor:= MerchantProcessorSimulator for:[ :anAmount :aCreditCard | ].! !
+
+!methodRemoval: UserInterface #initializeWithAuthenticator:catalog: stamp: 'MMM 11/7/2022 13:58:20'!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartForCartId := Dictionary new.
+	purchasesForClientId := Dictionary new.
+	clientIdForCartId := Dictionary new.
+	maxCartIdUsed := 0.	
+	maxTransactionIdUsed := 0.	
+	merchantProcessor:= MerchantProcessorSimulator for:[ :anAmount :aCreditCard | ].!
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 13:58:55'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartForCartId catalog maxCartIdUsed purchasesForClientId clientIdForCartId maxTransactionIdUsed merchantProcessor timeProvider'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'initialization' stamp: 'MMM 11/7/2022 13:58:53' prior: 50567316!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog timeProvider: aTimeProvider
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartForCartId := Dictionary new.
+	purchasesForClientId := Dictionary new.
+	clientIdForCartId := Dictionary new.
+	maxCartIdUsed := 0.	
+	maxTransactionIdUsed := 0.	
+	merchantProcessor:= MerchantProcessorSimulator for:[ :anAmount :aCreditCard | ].
+	timeProvider:= aTimeProvider.! !
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:59:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:59:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:59:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:59:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:59:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:59:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:59:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:59:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:59:23'!
+ERROR!
+
+!classDefinition: #TimeProvider category: 'TusLibros' stamp: 'MMM 11/7/2022 13:59:55'!
+Object subclass: #TimeProvider
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:59:48' prior: 50567000!
+test01_CreateCart_CanNotWhitInvalidUser
+
+| interfaz authenticator |
+
+authenticator := AuthenticateSimulator for: false.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz createCartFor: validUserId authenticatedWith: validUserPassword .]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface invalidUserErrorMessage]! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 14:00:15' prior: 50567017!
+test02_ListCart_WithNewCartReturnsEmptyList
+
+| interfaz cartId authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+
+self assert: (interfaz listCart: cartId) equals: OrderedCollection new.! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 14:00:19' prior: 50567063!
+test03_ListCart_RemembersAddedItems
+
+| interfaz aCartId authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+aCartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: aCartId item: selledBook withQuantityOf: 1.
+
+self assert: (interfaz listCart: aCartId) equals: (OrderedCollection with: selledBook).! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 14:00:24' prior: 50566936!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage.]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 14:00:28' prior: 50567098!
+test05_ListCart_CanNotListInvalidCart
+
+| interfaz authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz listCart: 3.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 14:00:32' prior: 50564657!
+test06_CheckOut_CanNotToAnInvalidCart
+
+| interfaz authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz checkOutCart: 3 charging: creditCard .]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 14:00:38' prior: 50567113!
+test07_ListPurchases_MakeListForOneSale
+
+| interfaz cartId authenticator purchasesList |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: cartId charging: creditCard .
+
+purchasesList:=interfaz listPurchases: validUserId .
+
+self assert: (purchasesList purchasesItems) size equals:1.
+self assert: (purchasesList includeSellFor: selledBook) equals:true.
+self assert: (purchasesList quantityFor:selledBook) equals:1.
+self assert: (purchasesList includeSellFor:notSelledBook) equals:false.
+self assert: (purchasesList quantityFor:notSelledBook) equals:0.
+self assert: (purchasesList totalAmmount) equals: selledBookPrice.
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 14:00:44' prior: 50567175!
+test08_ListPurchases_MakeListForManySales
+
+|authenticator interfaz firstCartId secondCartId purchasesList |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+firstCartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: firstCartId item: selledBook withQuantityOf: 10.
+interfaz addToCart: firstCartId item: anotherSelledBook withQuantityOf: 20.
+interfaz checkOutCart: firstCartId charging: creditCard .
+
+secondCartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: secondCartId item: selledBook withQuantityOf: 5.
+interfaz checkOutCart: secondCartId charging: creditCard .
+
+purchasesList:=interfaz listPurchases: validUserId .
+
+self assert: (purchasesList purchasesItems) size equals:2.
+self assert: (purchasesList includeSellFor: selledBook) equals:true.
+self assert: (purchasesList quantityFor:selledBook) equals:15.
+self assert: (purchasesList includeSellFor: anotherSelledBook ) equals:true.
+self assert: (purchasesList quantityFor:anotherSelledBook) equals:20.
+self assert: (purchasesList includeSellFor:notSelledBook) equals:false.
+self assert: (purchasesList quantityFor:notSelledBook) equals:0.
+self assert: (purchasesList totalAmmount) equals: (selledBookPrice*15+(anotherSelledBookPrice*20)).
+! !
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 14:00:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 14:00:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 14:00:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 14:00:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 14:00:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 14:00:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 14:00:47'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 14:00:47'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 14:00:47'!
+PASSED!
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 15:22:45'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartForCartId catalog maxCartIdUsed purchasesForClientId clientIdForCartId maxTransactionIdUsed merchantProcessor timeProvider lastTimeActivityForCartId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 15:22:42' prior: 50566623!
+createCartFor: userId authenticatedWith: password 
+	"user == client"
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	clientIdForCartId at: actualCartId put: userId.
+	lastTimeActivityForCartId at: actualCartId put: (timeProvider now)
+	^actualCartId.! !
+!UserInterface methodsFor: 'initialization' stamp: 'MMM 11/7/2022 15:23:14' prior: 50567359!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog timeProvider: aTimeProvider
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartForCartId := Dictionary new.
+	purchasesForClientId := Dictionary new.
+	clientIdForCartId := Dictionary new.
+	lastTimeActivityForCartId := Dictionary new.
+	maxCartIdUsed := 0.	
+	maxTransactionIdUsed := 0.	
+	merchantProcessor:= MerchantProcessorSimulator for:[ :anAmount :aCreditCard | ].
+	timeProvider:= aTimeProvider.! !
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 15:23:37'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MMM 11/7/2022 15:23:43'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MMM 11/7/2022 15:23:43'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MMM 11/7/2022 15:23:43'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:23:44'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 15:23:44'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 15:23:44'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 15:23:44'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 15:23:44'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:23:50'!
+ERROR!
+!TimeProvider methodsFor: 'time' stamp: 'MMM 11/7/2022 15:24:06'!
+now
+	self shouldBeImplemented.! !
+!TimeProvider methodsFor: 'time' stamp: 'MMM 11/7/2022 15:24:25' prior: 50567754!
+now
+	^DateAndTime now.! !
+!TimeProvider methodsFor: 'time' stamp: 'MMM 11/7/2022 15:24:50'!
+time
+	^DateAndTime now.! !
+!TimeProvider methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 15:24:50' prior: 50567758!
+now
+	^DateAndTime time.! !
+!TimeProvider methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 15:24:50' prior: 50567761!
+time
+	^DateAndTime time.! !
+
+!methodRemoval: TimeProvider #now stamp: 'MMM 11/7/2022 15:24:50'!
+now
+	^DateAndTime time.!
+!TimeProvider methodsFor: 'time' stamp: 'MMM 11/7/2022 15:24:58' prior: 50567769!
+time
+	^DateAndTime now.! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:25:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 15:25:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 15:25:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 15:25:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 15:25:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:25:08'!
+ERROR!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 15:25:19' prior: 50567639!
+createCartFor: userId authenticatedWith: password 
+	"user == client"
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	clientIdForCartId at: actualCartId put: userId.
+	lastTimeActivityForCartId at: actualCartId put: (timeProvider time)
+	^actualCartId.! !
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:25:27'!
+ERROR!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:25:36'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 15:25:36'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 15:25:36'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 15:25:36'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 15:25:36'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:25:40'!
+ERROR!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 15:25:51' prior: 50567857!
+createCartFor: userId authenticatedWith: password 
+	"user == client"
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	clientIdForCartId at: actualCartId put: userId.
+	lastTimeActivityForCartId at: actualCartId put: (timeProvider time).
+	^actualCartId.! !
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:25:56'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 15:25:59'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 15:26:00'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 15:26:01'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 15:26:06'!
+PASSED!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:26:50' prior: 50567466!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartIdErrorMessage.]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:29:43' prior: 50568058!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz authenticator a invalidCartId |
+
+invalidCartId:=100.
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz addToCart: invalidCartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage.
+			self deny: (interfaz isCart: invalidCartId forClient: a). ]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:30:22' prior: 50568075!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz authenticator invalidCartId |
+
+invalidCartId:=100.
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz addToCart: invalidCartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage.
+			self deny: (interfaz isCart: invalidCartId forClient: validUserId ). ]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:33:53'!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator invalidCartId |
+
+invalidCartId:=100.
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz addToCart: invalidCartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isCart: invalidCartId forClient: validUserId ). ]
+! !
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:33:59'!
+ERROR!
+!UserInterface class methodsFor: 'error message' stamp: 'MMM 11/7/2022 15:34:08'!
+expiredCartErrorMessage
+	self shouldBeImplemented.! !
+!UserInterface class methodsFor: 'error message' stamp: 'MMM 11/7/2022 15:34:35' prior: 50568142!
+expiredCartErrorMessage
+	^'¡Expired cart!!'.! !
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:35:40'!
+FAILURE!
+!UserInterfaceTest methodsFor: 'failing' stamp: 'MMM 11/7/2022 15:35:48' overrides: 16961686!
+signalFailure: aString 
+	self shouldBeImplemented.! !
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 15:36:53'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 15:36:58'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 15:36:58'!
+ERROR!
+!UserInterface methodsFor: 'testing' stamp: 'MMM 11/7/2022 15:37:08'!
+isCart: invalidCartId forClient: validUserId 
+	self shouldBeImplemented.! !
+!UserInterface methodsFor: 'testing' stamp: 'MMM 11/7/2022 15:38:15' prior: 50568171!
+isCart: cartId forClient: userId 
+	^cartForCartId includesKey: cartId.! !
+!UserInterface methodsFor: 'testing' stamp: 'MMM 11/7/2022 15:38:37'!
+isCart: cartId  
+	^cartForCartId includesKey: cartId.! !
+
+!methodRemoval: UserInterface #isCart:forClient: stamp: 'MMM 11/7/2022 15:38:37'!
+isCart: cartId forClient: userId 
+	^cartForCartId includesKey: cartId.!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:38:48' prior: 50568096!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz authenticator invalidCartId |
+
+invalidCartId:=100.
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz addToCart: invalidCartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage.
+			self deny: (interfaz isCart: invalidCartId). ]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:38:58' prior: 50568117!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator invalidCartId |
+
+invalidCartId:=100.
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz addToCart: invalidCartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isCart: invalidCartId). ]
+! !
+!UserInterface methodsFor: 'testing' stamp: 'MMM 11/7/2022 15:39:24'!
+isValidCartId: cartId  
+	^cartForCartId includesKey: cartId.! !
+!UserInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 15:39:24' prior: 50568192!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz authenticator invalidCartId |
+
+invalidCartId:=100.
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz addToCart: invalidCartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage.
+			self deny: (interfaz isValidCartId: invalidCartId). ]
+! !
+!UserInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 15:39:24' prior: 50568213!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator invalidCartId |
+
+invalidCartId:=100.
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+
+self should: [ interfaz addToCart: invalidCartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isValidCartId: invalidCartId). ]
+! !
+
+!methodRemoval: UserInterface #isCart: stamp: 'MMM 11/7/2022 15:39:24'!
+isCart: cartId  
+	^cartForCartId includesKey: cartId.!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 15:39:28'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:39:28'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 15:39:28'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 15:39:28'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 15:39:28'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 15:39:28'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 15:39:28'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 15:39:28'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:39:28'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:39:28'!
+ERROR!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:42:40' prior: 50568260!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator cartId |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+
+self should: [ interfaz addToCart: cartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isValidCartId: cartId). ]
+! !
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:42:42'!
+ERROR!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:43:04' prior: 50568321!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator cartId |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: (TimeProvider new).
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+
+self should: [ interfaz addToCart: cartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isValidCartId: cartId). ]
+! !
+
+!classDefinition: #UserInterfaceTest category: 'TusLibros' stamp: 'MMM 11/7/2022 15:43:39'!
+TestCase subclass: #UserInterfaceTest
+	instanceVariableNames: 'testObjectsFactory authenticationBehavior debitBehavior selledBook selledBookPrice anotherSelledBook notSelledBook catalog creditCard anotherSelledBookPrice validUserId validUserPassword timeProvider'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterfaceTest methodsFor: 'setup' stamp: 'MMM 11/7/2022 15:43:37' prior: 50566978 overrides: 16961394!
+setUp
+	testObjectsFactory := StoreTestObjectsFactory new.
+	
+	selledBook:=testObjectsFactory itemSellByTheStore.
+	selledBookPrice:=testObjectsFactory itemSellByTheStorePrice .
+	anotherSelledBook:=testObjectsFactory anotherItemSellByTheStore.
+	anotherSelledBookPrice:=testObjectsFactory anotherItemSellByTheStorePrice .
+	notSelledBook:=testObjectsFactory itemNotSellByTheStore .
+	catalog:=testObjectsFactory defaultCatalog.
+	creditCard := testObjectsFactory notExpiredCreditCard.
+	
+	validUserId:= 'Pepe'.
+	validUserPassword:='pepe123'.
+		
+	timeProvider:=TimeProvider new.	
+	authenticationBehavior := [ :anUser :aPassword | ].
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:43:59' prior: 50567414!
+test01_CreateCart_CanNotWhitInvalidUser
+
+| interfaz authenticator |
+
+authenticator := AuthenticateSimulator for: false.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider.
+
+self should: [ interfaz createCartFor: validUserId authenticatedWith: validUserPassword .]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface invalidUserErrorMessage]! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:44:09' prior: 50567432!
+test02_ListCart_WithNewCartReturnsEmptyList
+
+| interfaz cartId authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+
+self assert: (interfaz listCart: cartId) equals: OrderedCollection new.! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:44:19' prior: 50567448!
+test03_ListCart_RemembersAddedItems
+
+| interfaz aCartId authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider.
+aCartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: aCartId item: selledBook withQuantityOf: 1.
+
+self assert: (interfaz listCart: aCartId) equals: (OrderedCollection with: selledBook).! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:44:30' prior: 50568239!
+test04_AddItem_CanNotAddToAnInvalidCart
+
+| interfaz authenticator invalidCartId |
+
+invalidCartId:=100.
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider.
+
+self should: [ interfaz addToCart: invalidCartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage.
+			self deny: (interfaz isValidCartId: invalidCartId). ]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:44:39' prior: 50567484!
+test05_ListCart_CanNotListInvalidCart
+
+| interfaz authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+
+self should: [ interfaz listCart: 3.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:46:24' prior: 50567500!
+test06_CheckOut_CanNotToAnInvalidCart
+
+| interfaz authenticator |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+
+self should: [ interfaz checkOutCart: 3 charging: creditCard .]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:46:32' prior: 50567517!
+test07_ListPurchases_MakeListForOneSale
+
+| interfaz cartId authenticator purchasesList |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: cartId charging: creditCard .
+
+purchasesList:=interfaz listPurchases: validUserId .
+
+self assert: (purchasesList purchasesItems) size equals:1.
+self assert: (purchasesList includeSellFor: selledBook) equals:true.
+self assert: (purchasesList quantityFor:selledBook) equals:1.
+self assert: (purchasesList includeSellFor:notSelledBook) equals:false.
+self assert: (purchasesList quantityFor:notSelledBook) equals:0.
+self assert: (purchasesList totalAmmount) equals: selledBookPrice.
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:46:39' prior: 50567548!
+test08_ListPurchases_MakeListForManySales
+
+|authenticator interfaz firstCartId secondCartId purchasesList |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+
+firstCartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: firstCartId item: selledBook withQuantityOf: 10.
+interfaz addToCart: firstCartId item: anotherSelledBook withQuantityOf: 20.
+interfaz checkOutCart: firstCartId charging: creditCard .
+
+secondCartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+interfaz addToCart: secondCartId item: selledBook withQuantityOf: 5.
+interfaz checkOutCart: secondCartId charging: creditCard .
+
+purchasesList:=interfaz listPurchases: validUserId .
+
+self assert: (purchasesList purchasesItems) size equals:2.
+self assert: (purchasesList includeSellFor: selledBook) equals:true.
+self assert: (purchasesList quantityFor:selledBook) equals:15.
+self assert: (purchasesList includeSellFor: anotherSelledBook ) equals:true.
+self assert: (purchasesList quantityFor:anotherSelledBook) equals:20.
+self assert: (purchasesList includeSellFor:notSelledBook) equals:false.
+self assert: (purchasesList quantityFor:notSelledBook) equals:0.
+self assert: (purchasesList totalAmmount) equals: (selledBookPrice*15+(anotherSelledBookPrice*20)).
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:46:48' prior: 50568347!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator cartId |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+
+self should: [ interfaz addToCart: cartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isValidCartId: cartId). ]
+! !
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 15:46:58'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:46:58'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 15:46:58'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 15:46:58'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 15:46:58'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 15:46:58'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 15:46:58'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 15:46:58'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:46:58'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:46:58'!
+ERROR!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:47:47' prior: 50568590!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator cartId |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+timeProvider offSet: -30 minutes.
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+
+self should: [ interfaz addToCart: cartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isValidCartId: cartId). ]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:47:58' prior: 50568648!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator cartId |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+timeProvider offSet: -30 minutes.
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+timeProvider offSet: 0.
+
+self should: [ interfaz addToCart: cartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isValidCartId: cartId). ]
+! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:49:05' prior: 50568671!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator cartId |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+timeProvider offSet: -31 minutes.
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+timeProvider offSet: 0.
+
+self should: [ interfaz addToCart: cartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isValidCartId: cartId). ]
+! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 15:50:18'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 15:50:19'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 15:50:19'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 15:50:19'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 15:50:19'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:50:19'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:50:19'!
+ERROR!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:50:33' prior: 50568695!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator cartId |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+timeProvider offSet: -31 minutes.
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+timeProvider offSet: 0.
+"
+self should: [ interfaz addToCart: cartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isValidCartId: cartId). ]
+"! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:50:41'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 15:50:42'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 15:50:42'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 15:50:42'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 15:50:42'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 15:50:42'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 15:50:42'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:50:42'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:50:42'!
+ERROR!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:50:56' prior: 50568800!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator cartId |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+"timeProvider offSet: -31 minutes.
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+timeProvider offSet: 0.
+
+self should: [ interfaz addToCart: cartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isValidCartId: cartId). ]
+"! !
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNotAddToAnInvalidCart stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:51:08'!
+PASSED!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 15:51:23' prior: 50568905!
+test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted
+
+| interfaz authenticator cartId |
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog timeProvider: timeProvider .
+timeProvider offSet: -31 minutes.
+cartId := interfaz createCartFor: validUserId authenticatedWith: validUserPassword.
+timeProvider offSet: 0.
+
+"self should: [ interfaz addToCart: cartId item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface expiredCartErrorMessage.
+			self deny: (interfaz isValidCartId: cartId). ]
+"! !
+
+!testRun: #UserInterfaceTest #test09_AddItem_CanNotAddToAnExpiredCartWichIsDeleted stamp: 'MMM 11/7/2022 15:51:30'!
+ERROR!
+!TimeProvider methodsFor: 'managing time' stamp: 'MMM 11/7/2022 15:52:46'!
+offSet: aString 
+	self shouldBeImplemented.! !
+
+!classDefinition: #TimeProvider category: 'TusLibros' stamp: 'MMM 11/7/2022 15:53:08'!
+Object subclass: #TimeProvider
+	instanceVariableNames: 'offset'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TimeProvider methodsFor: 'managing time' stamp: 'MMM 11/7/2022 15:53:06' prior: 50569034!
+offSet: anOffset 
+	offset:=anOffset.! !
+!TimeProvider methodsFor: 'managing time' stamp: 'MMM 11/7/2022 15:53:27' prior: 50569046!
+offSet: anOffset 
+	offset:=anOffset.! !
+!TimeProvider methodsFor: 'time' stamp: 'MMM 11/7/2022 15:53:52' prior: 50567776!
+time
+	^DateAndTime now + offset.! !
+
+TestCase subclass: #TimeProviderTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TimeProviderTest category: 'TusLibros' stamp: 'MMM 11/7/2022 15:54:43'!
+TestCase subclass: #TimeProviderTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!TimeProviderTest methodsFor: 'no messages' stamp: 'MMM 11/7/2022 15:56:42'!
+test01_TimeProvider
+	| now timeProvider |
+	timeProvider := TimeProvider new.	
+	now:= timeProvider now.
+	! !
+!TimeProviderTest methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 15:58:30' prior: 50569070!
+test01_TimeProvider
+	| now timeProvider |
+	timeProvider := TimeProvider new.	
+	now:= timeProvider now.
+	! !
+
+----SNAPSHOT----(7 November 2022 15:59:09) CuisUniversity-5510.image priorSource: 7539253!
