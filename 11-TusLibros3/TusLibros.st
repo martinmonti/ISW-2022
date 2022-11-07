@@ -100,7 +100,7 @@ setUp
 
 !classDefinition: #CashierTest category: 'TusLibros'!
 TestCase subclass: #CashierTest
-	instanceVariableNames: 'testObjectsFactory debitBehavior'
+	instanceVariableNames: 'testObjectsFactory merchantProcessor'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -123,7 +123,7 @@ test01CanNotCheckoutAnEmptyCart
 			self assert: anError messageText = Cashier cartCanNotBeEmptyErrorMessage.
 			self assert: salesBook isEmpty ]! !
 
-!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:51'!
+!CashierTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 12:59:13'!
 test02CalculatedTotalIsCorrect
 
 	| cart cashier |
@@ -134,7 +134,7 @@ test02CalculatedTotalIsCorrect
 	cashier :=  Cashier
 		toCheckout: cart 
 		charging: testObjectsFactory notExpiredCreditCard 
-		throught: self
+		throught: merchantProcessor 
 		on: testObjectsFactory today 
 		registeringOn: OrderedCollection new.
 		
@@ -161,7 +161,7 @@ test03CanNotCheckoutWithAnExpiredCreditCart
 			self assert: anError messageText = Cashier canNotChargeAnExpiredCreditCardErrorMessage.
 			self assert: salesBook isEmpty ]! !
 
-!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 19:04'!
+!CashierTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 12:59:23'!
 test04CheckoutRegistersASale
 
 	| cart cashier salesBook total |
@@ -173,7 +173,7 @@ test04CheckoutRegistersASale
 	cashier:= Cashier 
 		toCheckout: cart 
 		charging: testObjectsFactory notExpiredCreditCard
-		throught: self
+		throught: merchantProcessor 
 		on: testObjectsFactory today
 		registeringOn: salesBook.
 		
@@ -182,46 +182,47 @@ test04CheckoutRegistersASale
 	self assert: salesBook size = 1.
 	self assert: salesBook first total = total.! !
 
-!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 19:00'!
+!CashierTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:08:22'!
 test05CashierChargesCreditCardUsingMerchantProcessor
 
-	| cart cashier salesBook total creditCard debitedAmout debitedCreditCard  |
+	| cart cashier salesBook total creditCard debitedAmout debitedCreditCard  debitBehaviour |
 
 	cart := testObjectsFactory createCart.
 	cart add: testObjectsFactory itemSellByTheStore.
 	creditCard := testObjectsFactory notExpiredCreditCard.
 	salesBook := OrderedCollection new.
- 
+
+	debitBehaviour := [ :anAmount :aCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ]. 
+
 	cashier:= Cashier 
 		toCheckout: cart 
 		charging: creditCard
-		throught: self
+		throught: (MerchantProcessorSimulator for: debitBehaviour)
 		on: testObjectsFactory today
 		registeringOn: salesBook.
 		
-	debitBehavior := [ :anAmount :aCreditCard | 
-		debitedAmout := anAmount.
-		debitedCreditCard := aCreditCard ].
 	total := cashier checkOut.
 					
 	self assert: debitedCreditCard = creditCard.
 	self assert: debitedAmout = total.! !
 
-!CashierTest methodsFor: 'tests' stamp: 'HernanWilkinson 6/17/2013 18:59'!
+!CashierTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:05:59'!
 test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit
 
-	| cart cashier salesBook creditCard |
+	| cart cashier salesBook creditCard errorDebitBehaviour |
 
 	cart := testObjectsFactory createCart.
 	cart add: testObjectsFactory itemSellByTheStore.
 	creditCard := testObjectsFactory notExpiredCreditCard.
 	salesBook := OrderedCollection new.
- 	debitBehavior := [ :anAmount :aCreditCard | self error: Cashier creditCardHasNoCreditErrorMessage].
+ 	errorDebitBehaviour := [ :anAmount :aCreditCard | self error: Cashier creditCardHasNoCreditErrorMessage].
 	
 	cashier:= Cashier 
 		toCheckout: cart 
 		charging: creditCard
-		throught: self
+		throught: (MerchantProcessorSimulator for: errorDebitBehaviour)
 		on: testObjectsFactory today
 		registeringOn: salesBook.
 		
@@ -233,17 +234,11 @@ test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit
 			self assert: salesBook isEmpty ]! !
 
 
-!CashierTest methodsFor: 'setup' stamp: 'HernanWilkinson 6/17/2013 19:03'!
+!CashierTest methodsFor: 'setup' stamp: 'MMM 11/7/2022 13:02:28'!
 setUp 
 
 	testObjectsFactory := StoreTestObjectsFactory new.
-	debitBehavior := [ :anAmount :aCreditCard | ]! !
-
-
-!CashierTest methodsFor: 'merchant processor protocol' stamp: 'HernanWilkinson 6/17/2013 19:02'!
-debit: anAmount from: aCreditCard 
-
-	^debitBehavior value: anAmount value: aCreditCard ! !
+	merchantProcessor := MerchantProcessorSimulator for: [ :anAmount :aCreditCard | ].! !
 
 
 !classDefinition: #UserInterfaceTest category: 'TusLibros'!
@@ -430,7 +425,7 @@ self assert: (purchasesList totalAmmount) equals: (selledBookPrice*15+(anotherSe
 
 !classDefinition: #AuthenticateSimulator category: 'TusLibros'!
 Object subclass: #AuthenticateSimulator
-	instanceVariableNames: 'canAuthenticate boolean'
+	instanceVariableNames: 'canAuthenticate'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -665,6 +660,34 @@ expiringOn: aMonth
 	^self new initializeExpiringOn: aMonth! !
 
 
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'debitBehaviour'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!MerchantProcessorSimulator methodsFor: 'debit' stamp: 'MMM 11/7/2022 13:04:49'!
+debit: anAmount from: aCreditCard 
+	^debitBehaviour value: anAmount value: aCreditCard .! !
+
+
+!MerchantProcessorSimulator methodsFor: 'initialize' stamp: 'MMM 11/7/2022 13:04:49'!
+initializeFor: aDebitBehaviour 
+	debitBehaviour := aDebitBehaviour .
+! !
+
+"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
+
+!classDefinition: 'MerchantProcessorSimulator class' category: 'TusLibros'!
+MerchantProcessorSimulator class
+	instanceVariableNames: ''!
+
+!MerchantProcessorSimulator class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 13:03:08'!
+for: debitBehaviour 
+	^self new initializeFor: debitBehaviour ! !
+
+
 !classDefinition: #PurchasesSummary category: 'TusLibros'!
 Object subclass: #PurchasesSummary
 	instanceVariableNames: 'items totalAmmount'
@@ -809,12 +832,12 @@ today
 
 !classDefinition: #UserInterface category: 'TusLibros'!
 Object subclass: #UserInterface
-	instanceVariableNames: 'authenticator cartsForCartId catalog maxCartIdUsed purchasesForClientId clientIdForCartId debitBehavior maxTransactionIdUsed'
+	instanceVariableNames: 'authenticator cartsForCartId catalog maxCartIdUsed purchasesForClientId clientIdForCartId maxTransactionIdUsed merchantProcessor'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!UserInterface methodsFor: 'initialization' stamp: 'MMM 11/7/2022 02:02:23'!
+!UserInterface methodsFor: 'initialization' stamp: 'MMM 11/7/2022 13:10:17'!
 initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
 	authenticator := anAuthenticateSimulator.
 	catalog := aCatalog.
@@ -823,7 +846,7 @@ initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog
 	clientIdForCartId := Dictionary new.
 	maxCartIdUsed := 0.	
 	maxTransactionIdUsed := 0.	
-	debitBehavior := [ :anAmount :aCreditCard | ]! !
+	merchantProcessor:= MerchantProcessorSimulator for:[ :anAmount :aCreditCard | ].! !
 
 
 !UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 00:23:58'!
@@ -832,7 +855,7 @@ addToCart: aCartId item: anItem withQuantityOf: aQuantity
 	cart := cartsForCartId at: aCartId ifAbsent: [^self error: self class cartIdNotExistsErrorMessage].
 	cart add: aQuantity of: anItem.! !
 
-!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 06:17:37'!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 13:12:59'!
 checkOutCart: aCartId charging: aCreditCard 
 	| cart cashier clientId |
 	cart := cartsForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
@@ -841,7 +864,7 @@ checkOutCart: aCartId charging: aCreditCard
 	cashier := Cashier 
 		toCheckout: cart
 		charging: aCreditCard
-		throught: self
+		throught: merchantProcessor 
 		on: DateAndTime now
 		registeringOn: (purchasesForClientId at: clientId).
 	cashier checkOut.
@@ -881,12 +904,6 @@ unusedCartId
 
 	maxCartIdUsed := maxCartIdUsed + 1.
 	^maxCartIdUsed ! !
-
-
-!UserInterface methodsFor: 'merchant processor protocol' stamp: 'MMM 11/7/2022 01:23:40'!
-debit: anAmount from: aCreditCard 
-
-	^debitBehavior value: anAmount value: aCreditCard ! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 

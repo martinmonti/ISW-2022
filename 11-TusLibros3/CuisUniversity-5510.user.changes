@@ -5365,3 +5365,604 @@ PASSED!
 
 !testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 06:25:23'!
 PASSED!
+
+----SNAPSHOT----(7 November 2022 06:27:43) CuisUniversity-5510.image priorSource: 7312546!
+
+----STARTUP---- (7 November 2022 12:30:39) as C:\Users\EXO MATE\Desktop\FCEN\ISW2\Cuis\windows64\CuisUniversity-5510.image!
+
+
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'MMM 11/7/2022 12:50:08'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #AuthenticateSimulator
+	instanceVariableNames: 'canAuthenticate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #AuthenticateSimulator category: 'TusLibros' stamp: 'MMM 11/7/2022 12:50:31'!
+Object subclass: #AuthenticateSimulator
+	instanceVariableNames: 'canAuthenticate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----STARTUP---- (7 November 2022 12:55:46) as C:\Users\EXO MATE\Desktop\FCEN\ISW2\Cuis\windows64\CuisUniversity-5510.image!
+
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'MMM 11/7/2022 12:55:52'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'MMM 11/7/2022 12:55:52'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #AuthenticateSimulator category: 'TusLibros' stamp: 'MMM 11/7/2022 12:55:52'!
+Object subclass: #AuthenticateSimulator
+	instanceVariableNames: 'canAuthenticate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #AuthenticateSimulator category: 'TusLibros' stamp: 'MMM 11/7/2022 12:55:52'!
+Object subclass: #AuthenticateSimulator
+	instanceVariableNames: 'canAuthenticate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'nil' stamp: 'MMM 11/7/2022 12:56:33'!
+debit: anAmount from: aCreditCard 
+ ! !
+
+!methodRemoval: CashierTest #debit:from: stamp: 'MMM 11/7/2022 12:57:05'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard !
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MMM 11/7/2022 12:57:34'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectsFactory debitBehavior merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CashierTest methodsFor: 'setup' stamp: 'MMM 11/7/2022 12:57:31' prior: 50555668 overrides: 16961394!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	merchantProcessor := MerchantProcessorSimulator new.! !
+
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectsFactory merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CashierTest category: 'TusLibros' stamp: 'MMM 11/7/2022 12:57:46'!
+TestCase subclass: #CashierTest
+	instanceVariableNames: 'testObjectsFactory merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 12:57:51'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 12:57:56'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 12:57:56'!
+ERROR!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 12:57:56'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 12:57:56'!
+ERROR!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 12:57:56'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 12:57:56'!
+ERROR!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 12:58:20'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 12:59:13' prior: 50555651!
+test02CalculatedTotalIsCorrect
+
+	| cart cashier |
+	
+	cart := testObjectsFactory createCart.
+	cart add: 2 of: testObjectsFactory itemSellByTheStore.
+	
+	cashier :=  Cashier
+		toCheckout: cart 
+		charging: testObjectsFactory notExpiredCreditCard 
+		throught: merchantProcessor 
+		on: testObjectsFactory today 
+		registeringOn: OrderedCollection new.
+		
+	self assert: cashier checkOut = (testObjectsFactory itemSellByTheStorePrice * 2)! !
+!CashierTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 12:59:23' prior: 50555565!
+test04CheckoutRegistersASale
+
+	| cart cashier salesBook total |
+
+	cart := testObjectsFactory createCart.
+	cart add: testObjectsFactory itemSellByTheStore.
+	salesBook := OrderedCollection new.
+ 
+	cashier:= Cashier 
+		toCheckout: cart 
+		charging: testObjectsFactory notExpiredCreditCard
+		throught: merchantProcessor 
+		on: testObjectsFactory today
+		registeringOn: salesBook.
+		
+	total := cashier checkOut.
+					
+	self assert: salesBook size = 1.
+	self assert: salesBook first total = total.! !
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'MMM 11/7/2022 13:01:12'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'debit' stamp: 'MMM 11/7/2022 13:01:10' prior: 50565742!
+debit: anAmount from: aCreditCard 
+	^debitBehavior value: anAmount value: aCreditCard .! !
+!CashierTest methodsFor: 'setup' stamp: 'MMM 11/7/2022 13:01:47' prior: 50565760 overrides: 16961394!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	merchantProcessor := MerchantProcessorSimulator new.! !
+!CashierTest methodsFor: 'setup' stamp: 'MMM 11/7/2022 13:02:28' prior: 50565857 overrides: 16961394!
+setUp 
+
+	testObjectsFactory := StoreTestObjectsFactory new.
+	merchantProcessor := MerchantProcessorSimulator for: [ :anAmount :aCreditCard | ].! !
+!MerchantProcessorSimulator class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 13:02:45'!
+for: aBlockClosure 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aBlockClosure ! !
+!MerchantProcessorSimulator class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 13:03:08' prior: 50565872!
+for: debitBehaviour 
+	^self new initializeFor: debitBehaviour ! !
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'MMM 11/7/2022 13:03:24'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'debitBehavior debitBehaviour_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'initialize' stamp: 'MMM 11/7/2022 13:03:24'!
+initializeFor: debitBehaviour 
+	self shouldBeImplemented.
+	debitBehaviour_CHANGE_ME := debitBehaviour.! !
+!MerchantProcessorSimulator methodsFor: 'initialize' stamp: 'MMM 11/7/2022 13:03:32' prior: 50565895!
+initializeFor: debitBehaviour 
+! !
+
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'MMM 11/7/2022 13:03:42'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'debitBehaviour'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'initialize' stamp: 'MMM 11/7/2022 13:04:29' prior: 50565902!
+initializeFor: aDebitBehaviour 
+	debitBehavior := aDebitBehaviour .
+! !
+
+!classDefinition: #MerchantProcessorSimulator category: 'TusLibros' stamp: 'MMM 11/7/2022 13:04:49'!
+Object subclass: #MerchantProcessorSimulator
+	instanceVariableNames: 'debitBehaviour'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 13:04:49' prior: 50565850!
+debit: anAmount from: aCreditCard 
+	^debitBehaviour value: anAmount value: aCreditCard .! !
+!MerchantProcessorSimulator methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 13:04:49' prior: 50565925!
+initializeFor: aDebitBehaviour 
+	debitBehaviour := aDebitBehaviour .
+! !
+!CashierTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:05:59' prior: 50555583!
+test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit
+
+	| cart cashier salesBook creditCard errorDebitBehaviour |
+
+	cart := testObjectsFactory createCart.
+	cart add: testObjectsFactory itemSellByTheStore.
+	creditCard := testObjectsFactory notExpiredCreditCard.
+	salesBook := OrderedCollection new.
+ 	errorDebitBehaviour := [ :anAmount :aCreditCard | self error: Cashier creditCardHasNoCreditErrorMessage].
+	
+	cashier:= Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: (MerchantProcessorSimulator for: errorDebitBehaviour)
+		on: testObjectsFactory today
+		registeringOn: salesBook.
+		
+	self 
+		should: [cashier checkOut ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = Cashier creditCardHasNoCreditErrorMessage.
+			self assert: salesBook isEmpty ]! !
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 13:06:11'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 13:06:11'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 13:06:11'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 13:06:11'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 13:06:11'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 13:06:11'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 13:06:11'!
+ERROR!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 13:07:01'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 13:07:01'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 13:07:01'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 13:07:01'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 13:07:01'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 13:07:01'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 13:07:01'!
+ERROR!
+!CashierTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 13:08:22' prior: 50555609!
+test05CashierChargesCreditCardUsingMerchantProcessor
+
+	| cart cashier salesBook total creditCard debitedAmout debitedCreditCard  debitBehaviour |
+
+	cart := testObjectsFactory createCart.
+	cart add: testObjectsFactory itemSellByTheStore.
+	creditCard := testObjectsFactory notExpiredCreditCard.
+	salesBook := OrderedCollection new.
+
+	debitBehaviour := [ :anAmount :aCreditCard | 
+		debitedAmout := anAmount.
+		debitedCreditCard := aCreditCard ]. 
+
+	cashier:= Cashier 
+		toCheckout: cart 
+		charging: creditCard
+		throught: (MerchantProcessorSimulator for: debitBehaviour)
+		on: testObjectsFactory today
+		registeringOn: salesBook.
+		
+	total := cashier checkOut.
+					
+	self assert: debitedCreditCard = creditCard.
+	self assert: debitedAmout = total.! !
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 13:08:30'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 13:08:30'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 13:08:30'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 13:08:30'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 13:08:30'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 13:08:30'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:08:41'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNoAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:08:42'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:08:42'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:08:42'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:08:42'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:08:42'!
+PASSED!
+
+!methodRemoval: UserInterface #debit:from: stamp: 'MMM 11/7/2022 13:09:44'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard !
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 13:10:19'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartsForCartId catalog maxCartIdUsed purchasesForClientId clientIdForCartId debitBehavior maxTransactionIdUsed merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'initialization' stamp: 'MMM 11/7/2022 13:10:17' prior: 50561347!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartsForCartId := Dictionary new.
+	purchasesForClientId := Dictionary new.
+	clientIdForCartId := Dictionary new.
+	maxCartIdUsed := 0.	
+	maxTransactionIdUsed := 0.	
+	merchantProcessor:= MerchantProcessorSimulator for:[ :anAmount :aCreditCard | ].! !
+
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartsForCartId catalog maxCartIdUsed purchasesForClientId clientIdForCartId maxTransactionIdUsed merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 13:10:29'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartsForCartId catalog maxCartIdUsed purchasesForClientId clientIdForCartId maxTransactionIdUsed merchantProcessor'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:11:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:11:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:11:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNoAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:11:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:11:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:11:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:11:46'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:11:46'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:11:52'!
+ERROR!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 13:12:59' prior: 50565463!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier clientId |
+	cart := cartsForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	clientId := clientIdForCartId at: aCartId ifAbsent: ["ERROR"].
+	(purchasesForClientId includesKey: clientId) ifFalse: [purchasesForClientId at: clientId put: OrderedCollection new.].
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: merchantProcessor 
+		on: DateAndTime now
+		registeringOn: (purchasesForClientId at: clientId).
+	cashier checkOut.
+	^self newTransactionId! !
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:13:03'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:13:03'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:13:03'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNoAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:13:03'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:13:03'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:13:03'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:13:03'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:13:03'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:13:06'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:13:07'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:13:07'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNoAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:13:07'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:13:07'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:13:07'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:13:07'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:13:07'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MMM 11/7/2022 13:13:09'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MMM 11/7/2022 13:13:09'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MMM 11/7/2022 13:13:09'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MMM 11/7/2022 13:13:09'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MMM 11/7/2022 13:13:09'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MMM 11/7/2022 13:13:09'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MMM 11/7/2022 13:13:09'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MMM 11/7/2022 13:13:09'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 13:13:09'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 13:13:09'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 13:13:09'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 13:13:10'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 13:13:10'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 13:13:10'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01_CreateCart_CanNotWhitInvalidUser stamp: 'MMM 11/7/2022 13:13:10'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02_ListCart_WithNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 13:13:10'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03_ListCart_RemembersAddedItems stamp: 'MMM 11/7/2022 13:13:10'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04_AddItem_CanNoAddToAnInvalidCart stamp: 'MMM 11/7/2022 13:13:10'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05_ListCart_CanNotListInvalidCart stamp: 'MMM 11/7/2022 13:13:10'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06_CheckOut_CanNotToAnInvalidCart stamp: 'MMM 11/7/2022 13:13:10'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07_ListPurchases_MakeListForOneSale stamp: 'MMM 11/7/2022 13:13:10'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test08_ListPurchases_MakeListForManySales stamp: 'MMM 11/7/2022 13:13:10'!
+PASSED!
+
+----SNAPSHOT----(7 November 2022 13:13:16) CuisUniversity-5510.image priorSource: 7488797!
