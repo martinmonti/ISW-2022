@@ -1,0 +1,3250 @@
+
+
+----QUIT----(26 October 2022 08:07:27) CuisUniversity-5510.image priorSource: 2900072!
+
+----STARTUP---- (26 October 2022 08:07:28) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5510.image!
+
+
+----QUIT----(26 October 2022 08:07:28) CuisUniversity-5510.image priorSource: 7154921!
+
+----STARTUP---- (3 November 2022 19:01:49) as /home/clinux01/Descargas/linux64/CuisUniversity-5510.image!
+
+
+----End fileIn of /home/clinux01/Descargas/linux64/TusLibros-33.st----!
+
+----End fileIn of /home/clinux01/Descargas/linux64/Packages/TerseGuide.pck.st----!
+
+TestCase subclass: #InterfazTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InterfazTest category: 'TusLibros' stamp: 'JL 11/3/2022 19:39:44'!
+TestCase subclass: #InterfazTest
+	instanceVariableNames: 'testObjectsFactory'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #InterfazTest category: 'TusLibros' stamp: 'JL 11/3/2022 19:49:34'!
+TestCase subclass: #InterfazTest
+	instanceVariableNames: 'testObjectsFactory authenticationBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Interfaz category: 'TusLibros' stamp: 'JL 11/3/2022 19:49:41'!
+Object subclass: #Interfaz
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 19:49:28'!
+test01CanNotCreateCartWhitInvalidUser
+
+| interfaz password userId |
+authenticationBehavior := [:aUserId :aPassword | self error: Interfaz invalidUserErrorMessage].
+
+interfaz := Interfaz throught: self.
+
+self should: [ interfaz createCartFor: userId authenticatedWith: password.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = Interfaz invalidUserErrorMessage]! !
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 19:50:32' prior: 50558755!
+test01CanNotCreateCartWhitInvalidUser
+
+| interfaz password userId |
+
+userId := 'Pepe'.
+password := '1234'.
+authenticationBehavior := [:aUserId :aPassword | self error: Interfaz invalidUserErrorMessage].
+
+interfaz := Interfaz throught: self.
+
+self should: [ interfaz createCartFor: userId authenticatedWith: password.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = Interfaz invalidUserErrorMessage]! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 19:50:36'!
+ERROR!
+!Interfaz class methodsFor: 'instance creation' stamp: 'JL 11/3/2022 19:50:44'!
+throught: anInterfazTest 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeThrought: anInterfazTest ! !
+!Interfaz class methodsFor: 'instance creation' stamp: 'JL 11/3/2022 19:51:07' prior: 50558792!
+throught: aRestInterface
+	^self new initializeThrought: aRestInterface ! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 19:51:09'!
+ERROR!
+
+!classDefinition: #Interfaz category: 'TusLibros' stamp: 'JL 11/3/2022 19:51:17'!
+Object subclass: #Interfaz
+	instanceVariableNames: 'restInterface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interfaz methodsFor: 'initialization' stamp: 'JL 11/3/2022 19:51:17'!
+initializeThrought: aRestInterface 
+	self shouldBeImplemented.
+	restInterface := aRestInterface.! !
+!Interfaz methodsFor: 'initialization' stamp: 'JL 11/3/2022 19:51:23' prior: 50558816!
+initializeThrought: aRestInterface 
+	restInterface := aRestInterface.! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 19:51:25'!
+ERROR!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 19:51:44'!
+createCartFor: userId authenticatedWith: password 
+	self shouldBeImplemented.! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 19:52:49' prior: 50558830!
+createCartFor: userId authenticatedWith: password 
+	restInterface createCartFor: userId authenticatedWith: password. ! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 19:52:51'!
+ERROR!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 19:53:06'!
+ERROR!
+!InterfazTest methodsFor: 'create cart' stamp: 'JL 11/3/2022 19:53:17'!
+createCartFor: userId authenticatedWith: password 
+	self shouldBeImplemented.! !
+!InterfazTest methodsFor: 'create cart' stamp: 'JL 11/3/2022 19:53:56' prior: 50558849!
+createCartFor: userId authenticatedWith: password 
+	authenticationBehavior value: userId value: password.! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 19:53:58'!
+ERROR!
+!Interfaz class methodsFor: 'error message' stamp: 'JL 11/3/2022 19:54:10'!
+invalidUserErrorMessage
+	self shouldBeImplemented.! !
+!Interfaz class methodsFor: 'error message' stamp: 'JL 11/3/2022 19:54:21' prior: 50558864!
+invalidUserErrorMessage
+	^'User is invalid'! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 19:54:23'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 19:54:23'!
+PASSED!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 19:58:27'!
+test02ListNewCartReturnsEmptyList
+
+| interfaz password userId |
+
+userId := 'Pepe'.
+password := '12345'.
+
+
+interfaz := Interfaz throught: self.
+
+interfaz createCartFor: userId authenticatedWith: password.
+
+self assert: interfaz listCart equals: OrderedCollection new.! !
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 19:58:46'!
+ERROR!
+!InterfazTest methodsFor: 'setup' stamp: 'JL 11/3/2022 19:59:47' overrides: 16961394!
+setUp
+	testObjectsFactory := StoreTestObjectsFactory new.
+	authenticationBehavior := [ :anUser :aPassword | ].! !
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 19:59:50'!
+ERROR!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 19:59:58'!
+listCart
+	self shouldBeImplemented.! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 20:00:11' prior: 50558905!
+listCart
+	^OrderedCollection new.! !
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:00:13'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:00:13'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:00:13'!
+PASSED!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:01:29' prior: 50558880!
+test02ListNewCartReturnsEmptyList
+
+| interfaz password userId cartId |
+
+userId := 'Pepe'.
+password := '12345'.
+
+
+interfaz := Interfaz throught: self.
+
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self assert: interfaz listCart: cartId equals: OrderedCollection new.! !
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:01:39' prior: 50558924!
+test02ListNewCartReturnsEmptyList
+
+| interfaz password userId cartId |
+
+userId := 'Pepe'.
+password := '12345'.
+
+
+interfaz := Interfaz throught: self.
+
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self assert: (interfaz listCart: cartId) equals: OrderedCollection new.! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 20:02:06'!
+listCart: aCartId
+	^OrderedCollection new.! !
+
+!methodRemoval: Interfaz #listCart stamp: 'JL 11/3/2022 20:02:06'!
+listCart
+	^OrderedCollection new.!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:09:02'!
+test03listCartRemembersAddedItems
+
+| interfaz password userId cartId item quantity |
+
+userId := 'Pepe'.
+password := '12345'.
+
+interfaz := Interfaz throught: self.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: cartId) equals: OrderedCollection with: item.! !
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:10:16' prior: 50558955!
+test03listCartRemembersAddedItems
+
+| interfaz password userId cartId item quantity |
+
+userId := 'Pepe'.
+password := '12345'.
+item := 1.
+quantity := 5.
+
+interfaz := Interfaz throught: self.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: cartId) equals: OrderedCollection with: item.! !
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:16:06'!
+ERROR!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 20:16:12'!
+addToCart: cartId item: item withQuantityOf: quantity 
+	self shouldBeImplemented.! !
+
+Object subclass: #Interfaz
+	instanceVariableNames: 'restInterface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Interfaz category: 'TusLibros' stamp: 'JL 11/3/2022 20:34:10'!
+Object subclass: #Interfaz
+	instanceVariableNames: 'restInterface'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #AuthenticateSimulator
+	instanceVariableNames: 'canAuthenticate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #AuthenticateSimulator category: 'TusLibros' stamp: 'JL 11/3/2022 20:37:09'!
+Object subclass: #AuthenticateSimulator
+	instanceVariableNames: 'canAuthenticate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:38:16' prior: 50558771!
+test01CanNotCreateCartWhitInvalidUser
+
+| interfaz password userId authenticator |
+
+userId := 'Pepe'.
+password := '1234'.
+authenticationBehavior := [:aUserId :aPassword | self error: Interfaz invalidUserErrorMessage].
+
+authenticator := AuthenticateSimulator for: false.
+interfaz := Interfaz withAuthenticator: authenticator.
+
+self should: [ interfaz createCartFor: userId authenticatedWith: password.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = Interfaz invalidUserErrorMessage]! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:38:23'!
+ERROR!
+!AuthenticateSimulator class methodsFor: 'instance creation' stamp: 'JL 11/3/2022 20:38:27'!
+for: aFalse 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aFalse ! !
+!AuthenticateSimulator class methodsFor: 'instance creation' stamp: 'JL 11/3/2022 20:38:50' prior: 50559042!
+for: aBoolean
+	^self new initializeFor: aBoolean ! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:38:53'!
+ERROR!
+
+!classDefinition: #AuthenticateSimulator category: 'TusLibros' stamp: 'JL 11/3/2022 20:39:01'!
+Object subclass: #AuthenticateSimulator
+	instanceVariableNames: 'canAuthenticate boolean'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!AuthenticateSimulator methodsFor: 'initialization' stamp: 'JL 11/3/2022 20:39:01'!
+initializeFor: aBoolean 
+	self shouldBeImplemented.
+	boolean := aBoolean.! !
+!AuthenticateSimulator methodsFor: 'initialization' stamp: 'JL 11/3/2022 20:39:10' prior: 50559066!
+initializeFor: aBoolean 
+	canAuthenticate := aBoolean.! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:39:13'!
+ERROR!
+!Interfaz class methodsFor: 'instance creation' stamp: 'JL 11/3/2022 20:39:17'!
+withAuthenticator: anAuthenticateSimulator 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithAuthenticator: anAuthenticateSimulator ! !
+!Interfaz class methodsFor: 'instance creation' stamp: 'JL 11/3/2022 20:39:24' prior: 50559080!
+withAuthenticator: anAuthenticateSimulator 
+	^self new initializeWithAuthenticator: anAuthenticateSimulator ! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:39:26'!
+ERROR!
+
+!classDefinition: #Interfaz category: 'TusLibros' stamp: 'JL 11/3/2022 20:39:29'!
+Object subclass: #Interfaz
+	instanceVariableNames: 'restInterface authenticateSimulator'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interfaz methodsFor: 'initialization' stamp: 'JL 11/3/2022 20:39:29'!
+initializeWithAuthenticator: anAuthenticateSimulator 
+	self shouldBeImplemented.
+	authenticateSimulator := anAuthenticateSimulator.! !
+!Interfaz methodsFor: 'initialization' stamp: 'JL 11/3/2022 20:39:34' prior: 50559107!
+initializeWithAuthenticator: anAuthenticateSimulator 
+	authenticateSimulator := anAuthenticateSimulator.! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:39:38'!
+ERROR!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 20:41:03' prior: 50558836!
+createCartFor: userId authenticatedWith: password 
+	authenticateSimulator canAuthenticate ifFalse: [self error: self class invalidUserErrorMessage].! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:41:06'!
+ERROR!
+!AuthenticateSimulator methodsFor: 'accessing' stamp: 'JL 11/3/2022 20:41:12'!
+canAuthenticate
+	self shouldBeImplemented.
+	^canAuthenticate! !
+!AuthenticateSimulator methodsFor: 'accessing' stamp: 'JL 11/3/2022 20:41:16' prior: 50559135!
+canAuthenticate
+	^canAuthenticate! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:41:17'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:41:17'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:41:17'!
+ERROR!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:41:17'!
+ERROR!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:41:39' prior: 50559018!
+test01CanNotCreateCartWhitInvalidUser
+
+| interfaz password userId authenticator |
+
+userId := 'Pepe'.
+password := '1234'.
+
+authenticator := AuthenticateSimulator for: false.
+interfaz := Interfaz withAuthenticator: authenticator.
+
+self should: [ interfaz createCartFor: userId authenticatedWith: password.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = Interfaz invalidUserErrorMessage]! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:41:39'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:41:39'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:41:39'!
+ERROR!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:41:39'!
+ERROR!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:41:54' prior: 50558936!
+test02ListNewCartReturnsEmptyList
+
+| interfaz password userId cartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: false.
+interfaz := Interfaz withAuthenticator: authenticator.
+
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self assert: (interfaz listCart: cartId) equals: OrderedCollection new.! !
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:41:58'!
+ERROR!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:42:17' prior: 50559187!
+test02ListNewCartReturnsEmptyList
+
+| interfaz password userId cartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator.
+
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self assert: (interfaz listCart: cartId) equals: OrderedCollection new.! !
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:42:18'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:42:18'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:42:18'!
+PASSED!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:42:18'!
+ERROR!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:42:18'!
+ERROR!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:42:33'!
+PASSED!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:42:56' prior: 50558970!
+test03listCartRemembersAddedItems
+
+| interfaz password userId cartId item quantity authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+item := 1.
+quantity := 5.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: cartId) equals: OrderedCollection with: item.! !
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:43:06' prior: 50559239!
+test03listCartRemembersAddedItems
+
+| interfaz password userId cartId item quantity authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+item := 1.
+quantity := 5.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: cartId) equals: (OrderedCollection with: item).! !
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:43:07'!
+ERROR!
+
+!classDefinition: #Interfaz category: 'TusLibros' stamp: 'JL 11/3/2022 20:48:57'!
+Object subclass: #Interfaz
+	instanceVariableNames: 'restInterface authenticateSimulator carts'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Interfaz category: 'TusLibros' stamp: 'JL 11/3/2022 20:48:59'!
+Object subclass: #Interfaz
+	instanceVariableNames: 'restInterface authenticateSimulator carts catalog'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 20:48:54' prior: 50559124!
+createCartFor: userId authenticatedWith: password 
+	(authenticateSimulator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	[carts at: self cartId put: Cart acceptingItemsOf: catalog]! !
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:49:22' prior: 50559205!
+test02ListNewCartReturnsEmptyList
+
+| interfaz password userId cartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self assert: (interfaz listCart: cartId) equals: OrderedCollection new.! !
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:52:18'!
+ERROR!
+!Interfaz class methodsFor: 'instance creation' stamp: 'JL 11/3/2022 20:52:23'!
+withAuthenticator: anAuthenticateSimulator catalog: aDictionary 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeWithAuthenticator: anAuthenticateSimulator catalog: aDictionary ! !
+!Interfaz class methodsFor: 'instance creation' stamp: 'JL 11/3/2022 20:52:42' prior: 50559324!
+withAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	^self new initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog ! !
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:52:42'!
+ERROR!
+!Interfaz methodsFor: 'initialization' stamp: 'JL 11/3/2022 20:52:48'!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	self shouldBeImplemented.
+	authenticateSimulator := anAuthenticateSimulator.
+	catalog := aCatalog.! !
+!Interfaz methodsFor: 'initialization' stamp: 'JL 11/3/2022 20:52:53' prior: 50559345!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticateSimulator := anAuthenticateSimulator.
+	catalog := aCatalog.! !
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:52:55'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:52:55'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:52:55'!
+PASSED!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:52:55'!
+ERROR!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:52:55'!
+ERROR!
+
+Object subclass: #Interfaz
+	instanceVariableNames: 'restInterface authenticateSimulator carts catalog cartId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #Interfaz
+	instanceVariableNames: 'restInterface authenticateSimulator carts catalog cartId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!methodRemoval: Interfaz #initializeThrought: stamp: 'JL 11/3/2022 20:54:03'!
+initializeThrought: aRestInterface 
+	restInterface := aRestInterface.!
+
+!methodRemoval: Interfaz #initializeWithAuthenticator: stamp: 'JL 11/3/2022 20:54:05'!
+initializeWithAuthenticator: anAuthenticateSimulator 
+	authenticateSimulator := anAuthenticateSimulator.!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:54:54' prior: 50559157!
+test01CanNotCreateCartWhitInvalidUser
+
+| interfaz password userId authenticator |
+
+userId := 'Pepe'.
+password := '1234'.
+
+authenticator := AuthenticateSimulator for: false.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+.
+
+self should: [ interfaz createCartFor: userId authenticatedWith: password.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = Interfaz invalidUserErrorMessage]! !
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 20:55:01' prior: 50559257!
+test03listCartRemembersAddedItems
+
+| interfaz password userId cartId item quantity authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+item := 1.
+quantity := 5.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: cartId) equals: (OrderedCollection with: item).! !
+!Interfaz methodsFor: 'initialization' stamp: 'JL 11/3/2022 20:55:19' prior: 50559354!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticateSimulator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	carts := Dictionary new.! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 20:56:05' prior: 50558989!
+addToCart: aCartId item: item withQuantityOf: quantity 
+	self shouldBeImplemented.! !
+
+!classDefinition: #Interfaz category: 'TusLibros' stamp: 'JL 11/3/2022 20:56:16'!
+Object subclass: #Interfaz
+	instanceVariableNames: 'restInterface authenticateSimulator carts catalog cartId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interfaz methodsFor: 'initialization' stamp: 'JL 11/3/2022 20:56:15' prior: 50559437!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticateSimulator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	cartId := 0.! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:56:34'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:56:34'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:56:34'!
+PASSED!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:56:34'!
+ERROR!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:56:34'!
+ERROR!
+
+!methodRemoval: Interfaz #addToCart:item:withQuantityOf: stamp: 'JL 11/3/2022 20:56:42'!
+addToCart: aCartId item: item withQuantityOf: quantity 
+	self shouldBeImplemented.!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:56:45'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:56:47'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:56:53'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:57:24'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:57:24'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:57:24'!
+PASSED!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:57:24'!
+ERROR!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:57:24'!
+ERROR!
+!Interfaz methodsFor: 'interface functions - private' stamp: 'JL 11/3/2022 20:58:12'!
+cartId
+
+	cartId := cartId + 1
+	^cartId ! !
+!Interfaz methodsFor: 'interface functions - private' stamp: 'JL 11/3/2022 20:58:15' prior: 50559515!
+cartId
+
+	cartId := cartId + 1.
+	^cartId ! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 20:58:35' prior: 50559295!
+createCartFor: userId authenticatedWith: password 
+	(authenticateSimulator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	
+	carts at: self cartId put: Cart acceptingItemsOf: catalog! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 20:58:46' prior: 50559525!
+createCartFor: userId authenticatedWith: password 
+	(authenticateSimulator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	
+	carts at: self cartId put: (Cart acceptingItemsOf: catalog)! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:58:49'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 20:58:49'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 20:58:49'!
+PASSED!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:58:49'!
+ERROR!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:58:49'!
+ERROR!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 20:59:32'!
+ERROR!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 21:00:08' prior: 50559417!
+test03listCartRemembersAddedItems
+
+| interfaz password userId aCartId item quantity authenticator cartId |
+
+userId := 'Pepe'.
+password := '12345'.
+item := 1.
+quantity := 5.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: cartId) equals: (OrderedCollection with: item).! !
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 21:00:19'!
+ERROR!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:00:22'!
+addToCart: aCartId item: item withQuantityOf: quantity 
+	self shouldBeImplemented.! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:01:20' prior: 50559587!
+addToCart: aCartId item: item withQuantityOf: quantity 
+	(carts at: cartId) add: quantity of: item.! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:01:28' prior: 50559593!
+addToCart: aCartId item: item withQuantityOf: quantity 
+	(carts at: aCartId) add: quantity of: item.! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:01:54' prior: 50559600!
+addToCart: aCartId item: anItem withQuantityOf: aQuantity 
+	(carts at: aCartId) add: aQuantity of: anItem.! !
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 21:02:18'!
+ERROR!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 21:02:48' prior: 50559564!
+test03listCartRemembersAddedItems
+
+| interfaz password userId aCartId item quantity authenticator cartId |
+
+userId := 'Pepe'.
+password := '12345'.
+item := 1.
+quantity := 5.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: cartId) equals: (OrderedCollection with: item).! !
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 21:02:51'!
+ERROR!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:03:12' prior: 50559535!
+createCartFor: userId authenticatedWith: password 
+	(authenticateSimulator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	
+	carts at: self cartId put: (Cart acceptingItemsOf: catalog)
+	
+	^cartId.! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:03:15' prior: 50559640!
+createCartFor: userId authenticatedWith: password 
+	(authenticateSimulator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	
+	carts at: self cartId put: (Cart acceptingItemsOf: catalog).
+	
+	^cartId.! !
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 21:03:17'!
+ERROR!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 21:03:57' prior: 50559617!
+test03listCartRemembersAddedItems
+
+| interfaz password userId aCartId item quantity authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+item := testObjectsFactory itemSellByTheStore.
+quantity := 5.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: aCartId) equals: (OrderedCollection with: item).! !
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 21:04:01'!
+FAILURE!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:05:54' prior: 50558948!
+listCart: aCartId
+	^(carts at: aCartId) list! !
+!Cart methodsFor: 'list' stamp: 'JL 11/3/2022 21:06:58'!
+list
+	^items copy! !
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 21:07:24' prior: 50559664!
+test03listCartRemembersAddedItems
+
+| interfaz password userId aCartId item quantity authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+item := testObjectsFactory itemSellByTheStore.
+quantity := 1.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: aCartId) equals: (OrderedCollection with: item).! !
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 21:07:30'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 21:07:30'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 21:07:30'!
+PASSED!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 21:07:30'!
+PASSED!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:10:37' prior: 50559607!
+addToCart: aCartId item: anItem withQuantityOf: aQuantity 
+	| cart |
+	cart := carts at: aCartId ifAbsent: [^self error: self class cartIdNotExistsErrorMessage].
+	cart add: aQuantity of: anItem.! !
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 21:12:04'!
+test04CanNotAddItemToAnInvalidCart
+
+| interfaz password userId aCartId item quantity authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+item := testObjectsFactory itemSellByTheStore.
+quantity := 1.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+interfaz addToCart: 3 item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: aCartId) equals: (OrderedCollection with: item).! !
+
+!testRun: #InterfazTest #test04CanNotAddItemToAnInvalidCart stamp: 'JL 11/3/2022 21:12:22'!
+ERROR!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 21:13:34' prior: 50559739!
+test04CanNotAddItemToAnInvalidCart
+
+| interfaz password userId aCartId item quantity authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+item := testObjectsFactory itemSellByTheStore.
+quantity := 1.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: item withQuantityOf: quantity.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = Interfaz cartIdNotExistsErrorMessage]
+! !
+
+!testRun: #InterfazTest #test04CanNotAddItemToAnInvalidCart stamp: 'JL 11/3/2022 21:13:51'!
+ERROR!
+!Interfaz class methodsFor: 'error message' stamp: 'JL 11/3/2022 21:13:57'!
+cartIdNotExistsErrorMessage
+	self shouldBeImplemented.! !
+!Interfaz class methodsFor: 'error message' stamp: 'JL 11/3/2022 21:14:43' prior: 50559789!
+cartIdNotExistsErrorMessage
+	^'Cart Id Not Found'.! !
+
+!testRun: #InterfazTest #test04CanNotAddItemToAnInvalidCart stamp: 'JL 11/3/2022 21:14:51'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 21:14:51'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 21:14:51'!
+PASSED!
+
+!testRun: #InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 21:14:51'!
+PASSED!
+
+!testRun: #InterfazTest #test04CanNotAddItemToAnInvalidCart stamp: 'JL 11/3/2022 21:14:51'!
+PASSED!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 21:16:01'!
+test03ListCartRemembersAddedItems
+
+| interfaz password userId aCartId item quantity authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+item := testObjectsFactory itemSellByTheStore.
+quantity := 1.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: aCartId) equals: (OrderedCollection with: item).! !
+
+!methodRemoval: InterfazTest #test03listCartRemembersAddedItems stamp: 'JL 11/3/2022 21:16:01'!
+test03listCartRemembersAddedItems
+
+| interfaz password userId aCartId item quantity authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+item := testObjectsFactory itemSellByTheStore.
+quantity := 1.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: aCartId) equals: (OrderedCollection with: item).!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 21:18:30'!
+test05CanNotListInvalidCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz listCart: 3.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = Interfaz cartIdNotExistsErrorMessage]
+! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:19:02' prior: 50559688!
+listCart: aCartId
+ 	| cart |
+	cart := carts at: aCartId ifAbsent: [^self error: self class cartIdNotExistsErrorMessage].
+	^cart list! !
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 21:19:05'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 21:19:05'!
+PASSED!
+
+!testRun: #InterfazTest #test03ListCartRemembersAddedItems stamp: 'JL 11/3/2022 21:19:05'!
+PASSED!
+
+!testRun: #InterfazTest #test04CanNotAddItemToAnInvalidCart stamp: 'JL 11/3/2022 21:19:05'!
+PASSED!
+
+!testRun: #InterfazTest #test05CanNotListInvalidCart stamp: 'JL 11/3/2022 21:19:05'!
+PASSED!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 21:26:36'!
+test06CanNotCheckOutInvalidCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz checkOutCart: 3 charging: testObjectsFactory notExpiredCreditCard .]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = Interfaz cartIdNotExistsErrorMessage]
+! !
+
+!testRun: #InterfazTest #test06CanNotCheckOutInvalidCart stamp: 'JL 11/3/2022 21:26:55'!
+ERROR!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:26:58'!
+checkOutCart: aString charging: aString2 
+	self shouldBeImplemented.! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:28:27' prior: 50559921!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart |
+	cart := carts at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].! !
+
+!testRun: #InterfazTest #test06CanNotCheckOutInvalidCart stamp: 'JL 11/3/2022 21:28:37'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'JL 11/3/2022 21:28:37'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'JL 11/3/2022 21:28:37'!
+PASSED!
+
+!testRun: #InterfazTest #test03ListCartRemembersAddedItems stamp: 'JL 11/3/2022 21:28:37'!
+PASSED!
+
+!testRun: #InterfazTest #test04CanNotAddItemToAnInvalidCart stamp: 'JL 11/3/2022 21:28:37'!
+PASSED!
+
+!testRun: #InterfazTest #test05CanNotListInvalidCart stamp: 'JL 11/3/2022 21:28:37'!
+PASSED!
+
+!testRun: #InterfazTest #test06CanNotCheckOutInvalidCart stamp: 'JL 11/3/2022 21:28:37'!
+PASSED!
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 21:33:49'!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) equals: OrderedCollection new. 
+	! !
+
+!testRun: #InterfazTest #test07ListPurchasesRemebersCartCheckouts stamp: 'JL 11/3/2022 21:33:59'!
+ERROR!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:36:35' prior: 50559927!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier |
+	cart := carts at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: OrderedCollection new.
+		
+	^cashier checkOut! !
+
+!classDefinition: #Interfaz category: 'TusLibros' stamp: 'JL 11/3/2022 21:40:57'!
+Object subclass: #Interfaz
+	instanceVariableNames: 'restInterface authenticateSimulator carts catalog cartId purchases'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:41:01' prior: 50559979!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier client clientPurchases |
+	cart := carts at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	client := carts keyAtValue: cart ifAbsent: [].
+	clientPurchases := purchases at: client.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchases at: client put: clientPurchases.
+	
+	^self newTransactionId! !
+!InterfazTest methodsFor: 'tests' stamp: 'JL 11/3/2022 21:42:23' prior: 50559956!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator purchaseAmmount |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := Interfaz withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+purchaseAmmount := interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) equals: (OrderedCollection with: purchaseAmmount). 
+	! !
+
+!testRun: #InterfazTest #test07ListPurchasesRemebersCartCheckouts stamp: 'JL 11/3/2022 21:42:39'!
+ERROR!
+!Interfaz methodsFor: 'initialization' stamp: 'JL 11/3/2022 21:43:11' prior: 50559460!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticateSimulator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	purchases := Dictionary new.
+	cartId := 0.! !
+
+!testRun: #InterfazTest #test07ListPurchasesRemebersCartCheckouts stamp: 'JL 11/3/2022 21:43:16'!
+ERROR!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:46:27' prior: 50559651!
+createCartFor: userId authenticatedWith: password 
+	(authenticateSimulator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	
+	carts at: self cartId put: (Cart acceptingItemsOf: catalog).
+	purchases at: userId put: OrderedCollection new.
+	^cartId.! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:46:41' prior: 50560058!
+createCartFor: userId authenticatedWith: password 
+	(authenticateSimulator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	
+	carts at: self cartId put: (Cart acceptingItemsOf: catalog).
+	purchases at: userId put: OrderedCollection new.
+	"Falta identificar un cliente a traves de un carrito "
+	^cartId.! !
+
+!classDefinition: #Interfaz category: 'TusLibros' stamp: 'JL 11/3/2022 21:48:48'!
+Object subclass: #Interfaz
+	instanceVariableNames: 'restInterface authenticateSimulator carts catalog cartId purchases clientsForCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:48:46' prior: 50560001!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier client clientPurchases |
+	cart := carts at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	client := clientsForCart keyAtValue: cart ifAbsent: [].
+	clientPurchases := purchases at: client.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchases at: client put: clientPurchases.
+	
+	^self newTransactionId! !
+!Interfaz methodsFor: 'initialization' stamp: 'JL 11/3/2022 21:49:00' prior: 50560045!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticateSimulator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	purchases := Dictionary new.
+	clientsForCart := Dictionary new.
+	cartId := 0.! !
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:50:00' prior: 50560070!
+createCartFor: userId authenticatedWith: password 
+	| actualCartId |
+	(authenticateSimulator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self cartId.
+	carts at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchases at: userId put: OrderedCollection new.
+	clientsForCart at: actualCartId put: userId.
+	"Falta identificar un cliente a traves de un carrito "
+	^cartId.! !
+
+!testRun: #InterfazTest #test07ListPurchasesRemebersCartCheckouts stamp: 'JL 11/3/2022 21:50:14'!
+ERROR!
+!Interfaz methodsFor: 'interface functions' stamp: 'JL 11/3/2022 21:51:03' prior: 50560093!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier client clientPurchases |
+	cart := carts at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	client := clientsForCart at: cart ifAbsent: [].
+	clientPurchases := purchases at: client.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchases at: client put: clientPurchases.
+	
+	^self newTransactionId! !
+
+!testRun: #InterfazTest #test07ListPurchasesRemebersCartCheckouts stamp: 'JL 11/3/2022 21:51:07'!
+ERROR!
+
+----SNAPSHOT----(3 November 2022 21:52:52) CuisUniversity-5510.image priorSource: 7155150!
+
+----QUIT----(3 November 2022 21:52:56) CuisUniversity-5510.image priorSource: 7312454!
+
+----STARTUP---- (6 November 2022 22:28:41) as C:\Users\EXO MATE\Desktop\FCEN\ISW2\Cuis\windows64\CuisUniversity-5510.image!
+
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #InterfazTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/6/2022 22:29:07'!
+PASSED!
+
+!testRun: #InterfazTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/6/2022 22:29:08'!
+PASSED!
+
+!testRun: #InterfazTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/6/2022 22:29:08'!
+PASSED!
+
+!testRun: #InterfazTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/6/2022 22:29:08'!
+PASSED!
+
+!testRun: #InterfazTest #test05CanNotListInvalidCart stamp: 'MMM 11/6/2022 22:29:08'!
+PASSED!
+
+!testRun: #InterfazTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/6/2022 22:29:08'!
+PASSED!
+
+!testRun: #InterfazTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/6/2022 22:29:08'!
+ERROR!
+
+!testRun: #InterfazTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/6/2022 22:29:08'!
+ERROR!
+
+!testRun: #InterfazTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/6/2022 22:32:50'!
+ERROR!
+
+!classRenamed: #Interfaz as: #UserInterface stamp: 'MMM 11/6/2022 23:12:17'!
+Smalltalk renameClassNamed: #Interfaz as: #UserInterface!
+!InterfazTest methodsFor: 'as yet unclassified' stamp: 'MMM 11/6/2022 23:12:17' prior: 50559305!
+test02ListNewCartReturnsEmptyList
+
+| interfaz password userId cartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self assert: (interfaz listCart: cartId) equals: OrderedCollection new.! !
+!InterfazTest methodsFor: 'as yet unclassified' stamp: 'MMM 11/6/2022 23:12:18' prior: 50559763!
+test04CanNotAddItemToAnInvalidCart
+
+| interfaz password userId aCartId item quantity authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+item := testObjectsFactory itemSellByTheStore.
+quantity := 1.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: item withQuantityOf: quantity.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+!InterfazTest methodsFor: 'as yet unclassified' stamp: 'MMM 11/6/2022 23:12:18' prior: 50559855!
+test05CanNotListInvalidCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz listCart: 3.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+!InterfazTest methodsFor: 'as yet unclassified' stamp: 'MMM 11/6/2022 23:12:18' prior: 50559399!
+test01CanNotCreateCartWhitInvalidUser
+
+| interfaz password userId authenticator |
+
+userId := 'Pepe'.
+password := '1234'.
+
+authenticator := AuthenticateSimulator for: false.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+.
+
+self should: [ interfaz createCartFor: userId authenticatedWith: password.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface invalidUserErrorMessage]! !
+!InterfazTest methodsFor: 'as yet unclassified' stamp: 'MMM 11/6/2022 23:12:18' prior: 50560020!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator purchaseAmmount |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+purchaseAmmount := interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) equals: (OrderedCollection with: purchaseAmmount). 
+	! !
+!InterfazTest methodsFor: 'as yet unclassified' stamp: 'MMM 11/6/2022 23:12:18' prior: 50559814!
+test03ListCartRemembersAddedItems
+
+| interfaz password userId aCartId item quantity authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+item := testObjectsFactory itemSellByTheStore.
+quantity := 1.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: item withQuantityOf: quantity.
+
+self assert: (interfaz listCart: aCartId) equals: (OrderedCollection with: item).! !
+!InterfazTest methodsFor: 'as yet unclassified' stamp: 'MMM 11/6/2022 23:12:18' prior: 50559897!
+test06CanNotCheckOutInvalidCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz checkOutCart: 3 charging: testObjectsFactory notExpiredCreditCard .]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+
+!classRenamed: #InterfazTest as: #UserInterfaceTest stamp: 'MMM 11/6/2022 23:12:40'!
+Smalltalk renameClassNamed: #InterfazTest as: #UserInterfaceTest!
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/6/2022 23:12:55'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'userInterface authenticateSimulator carts catalog cartId purchases clientsForCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/6/2022 23:13:25'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'userInterface authenticator carts catalog cartId purchases clientsForCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/6/2022 23:13:25' prior: 50560112!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	purchases := Dictionary new.
+	clientsForCart := Dictionary new.
+	cartId := 0.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/6/2022 23:13:25' prior: 50560123!
+createCartFor: userId authenticatedWith: password 
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self cartId.
+	carts at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchases at: userId put: OrderedCollection new.
+	clientsForCart at: actualCartId put: userId.
+	"Falta identificar un cliente a traves de un carrito "
+	^cartId.! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/6/2022 23:13:55'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/6/2022 23:13:55'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/6/2022 23:13:55'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/6/2022 23:13:55'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/6/2022 23:13:55'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/6/2022 23:13:55'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/6/2022 23:13:55'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/6/2022 23:13:55'!
+ERROR!
+
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator carts catalog cartId purchases clientsForCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/6/2022 23:39:20'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator carts catalog cartId purchases clientsForCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 00:18:55'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator carts catalog maxCartIdUsed purchases clientsForCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:18:55' prior: 50559520!
+cartId
+
+	maxCartIdUsed := maxCartIdUsed + 1.
+	^maxCartIdUsed ! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:18:55' prior: 50560434!
+createCartFor: userId authenticatedWith: password 
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self cartId.
+	carts at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchases at: userId put: OrderedCollection new.
+	clientsForCart at: actualCartId put: userId.
+	"Falta identificar un cliente a traves de un carrito "
+	^maxCartIdUsed.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:18:55' prior: 50560423!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	purchases := Dictionary new.
+	clientsForCart := Dictionary new.
+	maxCartIdUsed := 0.! !
+!UserInterface methodsFor: 'interface functions - private' stamp: 'MMM 11/7/2022 00:19:29'!
+unusedCartId
+
+	maxCartIdUsed := maxCartIdUsed + 1.
+	^maxCartIdUsed ! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:19:29' prior: 50560507!
+createCartFor: userId authenticatedWith: password 
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	carts at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchases at: userId put: OrderedCollection new.
+	clientsForCart at: actualCartId put: userId.
+	"Falta identificar un cliente a traves de un carrito "
+	^maxCartIdUsed.! !
+
+!methodRemoval: UserInterface #cartId stamp: 'MMM 11/7/2022 00:19:29'!
+cartId
+
+	maxCartIdUsed := maxCartIdUsed + 1.
+	^maxCartIdUsed !
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 00:23:44'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartsForId catalog maxCartIdUsed purchases clientsForCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:23:44' prior: 50560524!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartsForId := Dictionary new.
+	purchases := Dictionary new.
+	clientsForCart := Dictionary new.
+	maxCartIdUsed := 0.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:23:44' prior: 50560541!
+createCartFor: userId authenticatedWith: password 
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartsForId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchases at: userId put: OrderedCollection new.
+	clientsForCart at: actualCartId put: userId.
+	"Falta identificar un cliente a traves de un carrito "
+	^maxCartIdUsed.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:23:44' prior: 50560143!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier client clientPurchases |
+	cart := cartsForId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	client := clientsForCart at: cart ifAbsent: [].
+	clientPurchases := purchases at: client.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchases at: client put: clientPurchases.
+	
+	^self newTransactionId! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:23:44' prior: 50559875!
+listCart: aCartId
+ 	| cart |
+	cart := cartsForId at: aCartId ifAbsent: [^self error: self class cartIdNotExistsErrorMessage].
+	^cart list! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:23:44' prior: 50559730!
+addToCart: aCartId item: anItem withQuantityOf: aQuantity 
+	| cart |
+	cart := cartsForId at: aCartId ifAbsent: [^self error: self class cartIdNotExistsErrorMessage].
+	cart add: aQuantity of: anItem.! !
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 00:23:58'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartsForCartId catalog maxCartIdUsed purchases clientsForCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:23:58' prior: 50560571!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartsForCartId := Dictionary new.
+	purchases := Dictionary new.
+	clientsForCart := Dictionary new.
+	maxCartIdUsed := 0.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:23:58' prior: 50560583!
+createCartFor: userId authenticatedWith: password 
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartsForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchases at: userId put: OrderedCollection new.
+	clientsForCart at: actualCartId put: userId.
+	"Falta identificar un cliente a traves de un carrito "
+	^maxCartIdUsed.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:23:58' prior: 50560600!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier client clientPurchases |
+	cart := cartsForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	client := clientsForCart at: cart ifAbsent: [].
+	clientPurchases := purchases at: client.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchases at: client put: clientPurchases.
+	
+	^self newTransactionId! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:23:58' prior: 50560620!
+listCart: aCartId
+ 	| cart |
+	cart := cartsForCartId at: aCartId ifAbsent: [^self error: self class cartIdNotExistsErrorMessage].
+	^cart list! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:23:58' prior: 50560628!
+addToCart: aCartId item: anItem withQuantityOf: aQuantity 
+	| cart |
+	cart := cartsForCartId at: aCartId ifAbsent: [^self error: self class cartIdNotExistsErrorMessage].
+	cart add: aQuantity of: anItem.! !
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 00:24:10'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartsForCartId catalog maxCartIdUsed purchasesForClientId clientsForCart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:24:10' prior: 50560647!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartsForCartId := Dictionary new.
+	purchasesForClientId := Dictionary new.
+	clientsForCart := Dictionary new.
+	maxCartIdUsed := 0.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:24:10' prior: 50560659!
+createCartFor: userId authenticatedWith: password 
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartsForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchasesForClientId at: userId put: OrderedCollection new.
+	clientsForCart at: actualCartId put: userId.
+	"Falta identificar un cliente a traves de un carrito "
+	^maxCartIdUsed.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:24:10' prior: 50560676!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier client clientPurchases |
+	cart := cartsForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	client := clientsForCart at: cart ifAbsent: [].
+	clientPurchases := purchasesForClientId at: client.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchasesForClientId at: client put: clientPurchases.
+	
+	^self newTransactionId! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 00:25:10' prior: 50560735!
+createCartFor: userId authenticatedWith: password 
+	"user == client"
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartsForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchasesForClientId at: userId put: OrderedCollection new.
+	clientsForCart at: actualCartId put: userId.
+	"Falta identificar un cliente a traves de un carrito "
+	^maxCartIdUsed.! !
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 00:25:18'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartsForCartId catalog maxCartIdUsed purchasesForClientId clientForCartId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:25:18' prior: 50560723!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartsForCartId := Dictionary new.
+	purchasesForClientId := Dictionary new.
+	clientForCartId := Dictionary new.
+	maxCartIdUsed := 0.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:25:18' prior: 50560773!
+createCartFor: userId authenticatedWith: password 
+	"user == client"
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartsForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchasesForClientId at: userId put: OrderedCollection new.
+	clientForCartId at: actualCartId put: userId.
+	"Falta identificar un cliente a traves de un carrito "
+	^maxCartIdUsed.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:25:18' prior: 50560753!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier client clientPurchases |
+	cart := cartsForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	client := clientForCartId at: cart ifAbsent: [].
+	clientPurchases := purchasesForClientId at: client.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchasesForClientId at: client put: clientPurchases.
+	
+	^self newTransactionId! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 00:26:39' prior: 50560831!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier client clientPurchases |
+	cart := cartsForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	client := clientForCartId at: aCartId ifAbsent: ["ERROR"].
+	clientPurchases := purchasesForClientId at: client.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchasesForClientId at: client put: clientPurchases.
+	
+	^self newTransactionId! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 00:27:07' prior: 50560851!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier client clientPurchases |
+	cart := cartsForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	client := clientForCartId at: aCartId ifAbsent: ["ERROR"].
+	clientPurchases := purchasesForClientId at: client.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchasesForClientId at: client put: clientPurchases.
+	
+	^self newTransactionId! !
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 00:27:54'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartsForCartId catalog maxCartIdUsed purchasesForClientId clientIdForCartId'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:27:54' prior: 50560801!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartsForCartId := Dictionary new.
+	purchasesForClientId := Dictionary new.
+	clientIdForCartId := Dictionary new.
+	maxCartIdUsed := 0.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:27:54' prior: 50560813!
+createCartFor: userId authenticatedWith: password 
+	"user == client"
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartsForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchasesForClientId at: userId put: OrderedCollection new.
+	clientIdForCartId at: actualCartId put: userId.
+	"Falta identificar un cliente a traves de un carrito "
+	^maxCartIdUsed.! !
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 00:27:54' prior: 50560872!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier client clientPurchases |
+	cart := cartsForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	client := clientIdForCartId at: aCartId ifAbsent: ["ERROR"].
+	clientPurchases := purchasesForClientId at: client.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchasesForClientId at: client put: clientPurchases.
+	
+	^self newTransactionId! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 00:28:11' prior: 50560932!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier clientId clientPurchases |
+	cart := cartsForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	clientId := clientIdForCartId at: aCartId ifAbsent: ["ERROR"].
+	clientPurchases := purchasesForClientId at: clientId.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: CashierTest new
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchasesForClientId at: clientId put: clientPurchases.
+	
+	^self newTransactionId! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 00:28:21'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 00:28:21'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 00:28:21'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 00:28:21'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 00:28:21'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 00:28:22'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 00:28:22'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 00:28:22'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:05:53'!
+ERROR!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 01:09:01' prior: 50560334!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator purchaseAmmount |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: 'LDJFLJDFLJKFLFKDLKJFLFJ' withQuantityOf: 1.
+
+purchaseAmmount := interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) equals: (OrderedCollection with: purchaseAmmount). 
+	! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 01:10:53' prior: 50561004!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator purchaseAmmount |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: (testObjectsFactory itemSellByTheStore) withQuantityOf: 1.
+
+purchaseAmmount := interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) equals: (OrderedCollection with: purchaseAmmount). 
+	! !
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:10:55'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:13:57'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:13:57'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 01:14:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 01:14:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 01:14:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 01:14:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 01:14:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 01:14:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:14:15'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:14:15'!
+ERROR!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 01:16:00' prior: 50560953!
+checkOutCart: aCartId charging: aCreditCard 
+	| cart cashier clientId clientPurchases |
+	cart := cartsForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
+	clientId := clientIdForCartId at: aCartId ifAbsent: ["ERROR"].
+	clientPurchases := purchasesForClientId at: clientId.
+	cashier := Cashier 
+		toCheckout: cart
+		charging: aCreditCard
+		throught: self
+		on: DateAndTime now
+		registeringOn: clientPurchases.
+
+	cashier checkOut.
+	purchasesForClientId at: clientId put: clientPurchases.
+	
+	^self newTransactionId! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 01:16:01'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 01:16:01'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 01:16:01'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 01:16:01'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 01:16:01'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 01:16:01'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:16:01'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:16:01'!
+ERROR!
+
+!classDefinition: #UserInterfaceTest category: 'TusLibros' stamp: 'MMM 11/7/2022 01:18:56'!
+TestCase subclass: #UserInterfaceTest
+	instanceVariableNames: 'testObjectsFactory authenticationBehavior debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterfaceTest methodsFor: 'nil' stamp: 'MMM 11/7/2022 01:18:54'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard ! !
+!UserInterfaceTest methodsFor: 'setup' stamp: 'MMM 11/7/2022 01:19:25' prior: 50558895 overrides: 16961394!
+setUp
+	testObjectsFactory := StoreTestObjectsFactory new.
+	authenticationBehavior := [ :anUser :aPassword | ].
+	debitBehavior := [ :anAmount :aCreditCard | ]! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 01:19:53'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 01:19:53'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 01:19:53'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 01:19:54'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 01:19:54'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 01:19:54'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:19:54'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:19:54'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 01:20:43'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 01:20:43'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 01:20:43'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 01:20:43'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 01:20:43'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 01:20:43'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:20:43'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:20:43'!
+ERROR!
+
+!methodRemoval: UserInterfaceTest #debit:from: stamp: 'MMM 11/7/2022 01:22:04'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard !
+!UserInterfaceTest methodsFor: 'nil' stamp: 'MMM 11/7/2022 01:23:18'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard ! !
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 01:23:43'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartsForCartId catalog maxCartIdUsed purchasesForClientId clientIdForCartId debitBehavior'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'nil' stamp: 'MMM 11/7/2022 01:23:40'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard ! !
+!UserInterfaceTest methodsFor: 'setup' stamp: 'MMM 11/7/2022 01:24:04' prior: 50561152 overrides: 16961394!
+setUp
+	testObjectsFactory := StoreTestObjectsFactory new.
+	authenticationBehavior := [ :anUser :aPassword | ].
+! !
+!UserInterface methodsFor: 'initialization' stamp: 'MMM 11/7/2022 01:24:21' prior: 50560902!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartsForCartId := Dictionary new.
+	purchasesForClientId := Dictionary new.
+	clientIdForCartId := Dictionary new.
+	maxCartIdUsed := 0.	
+	debitBehavior := [ :anAmount :aCreditCard | ]! !
+
+!methodRemoval: UserInterfaceTest #debit:from: stamp: 'MMM 11/7/2022 01:24:31'!
+debit: anAmount from: aCreditCard 
+
+	^debitBehavior value: anAmount value: aCreditCard !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 01:24:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 01:24:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 01:24:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 01:24:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 01:24:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 01:24:39'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:24:39'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 01:24:39'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 02:00:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 02:00:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 02:00:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 02:00:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 02:00:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 02:00:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:00:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:00:04'!
+ERROR!
+!UserInterface methodsFor: 'interface functions - private' stamp: 'MMM 11/7/2022 02:00:24'!
+newTransactionId
+	self shouldBeImplemented.! !
+!UserInterface methodsFor: 'interface functions - private' stamp: 'MMM 11/7/2022 02:00:52' prior: 50561320!
+newTransactionId
+	self shouldBeImplemented.! !
+
+!classDefinition: #UserInterface category: 'TusLibros' stamp: 'MMM 11/7/2022 02:02:06'!
+Object subclass: #UserInterface
+	instanceVariableNames: 'authenticator cartsForCartId catalog maxCartIdUsed purchasesForClientId clientIdForCartId debitBehavior maxTransactionIdUsed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'interface functions - private' stamp: 'MMM 11/7/2022 02:02:04' prior: 50561325!
+newTransactionId
+	maxTransactionIdUsed := maxTransactionIdUsed + 1.
+	^maxTransactionIdUsed .! !
+!UserInterface methodsFor: 'initialization' stamp: 'MMM 11/7/2022 02:02:23' prior: 50561248!
+initializeWithAuthenticator: anAuthenticateSimulator catalog: aCatalog 
+	authenticator := anAuthenticateSimulator.
+	catalog := aCatalog.
+	cartsForCartId := Dictionary new.
+	purchasesForClientId := Dictionary new.
+	clientIdForCartId := Dictionary new.
+	maxCartIdUsed := 0.	
+	maxTransactionIdUsed := 0.	
+	debitBehavior := [ :anAmount :aCreditCard | ]! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 02:02:26'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 02:02:26'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 02:02:26'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 02:02:26'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 02:02:26'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 02:02:26'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:02:26'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:02:26'!
+ERROR!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 02:02:47'!
+listPurchases: userId 
+	self shouldBeImplemented.! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 02:03:34' prior: 50561388!
+listPurchases: userId 
+	^ purchasesForClientId at: userId .! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 02:03:37'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 02:03:37'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 02:03:37'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 02:03:37'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 02:03:37'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 02:03:37'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:03:37'!
+FAILURE!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:03:37'!
+FAILURE!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 02:14:23' prior: 50561028!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: (testObjectsFactory itemSellByTheStore) withQuantityOf: 1.
+interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) equals: (OrderedCollection with: 1). 
+	! !
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:14:26'!
+FAILURE!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 02:17:21' prior: 50561425!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: (testObjectsFactory itemSellByTheStore) withQuantityOf: 1.
+interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) equals: (OrderedCollection with: (Sale of: 1)). 
+	! !
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:17:23'!
+FAILURE!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:18:24'!
+FAILURE!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:19:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 02:19:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 02:19:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 02:19:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 02:19:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 02:19:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 02:19:46'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:19:46'!
+FAILURE!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 02:19:46'!
+FAILURE!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 02:29:34' prior: 50561451!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: (testObjectsFactory itemSellByTheStore) withQuantityOf: 1.
+interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) asSet equals: (OrderedCollection with: (Sale of: 1)). 
+	! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 02:29:48' prior: 50561512!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: (testObjectsFactory itemSellByTheStore) withQuantityOf: 1.
+interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: ((interfaz listPurchases: userId) asSet) equals: (OrderedCollection with: (Sale of: 1)). 
+	! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 02:30:06' prior: 50561535!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: (testObjectsFactory itemSellByTheStore) withQuantityOf: 1.
+interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: ((interfaz listPurchases: userId) asSet) equals: (Set with: (Sale of: 1)). 
+	! !
+
+!classDefinition: #ClientPurchasesList category: 'TusLibros' stamp: 'MMM 11/7/2022 02:55:03'!
+Object subclass: #ClientPurchasesList
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #SaleItem category: 'TusLibros' stamp: 'MMM 11/7/2022 02:55:08'!
+Object subclass: #SaleItem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 02:57:19' prior: 50561558!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator selledBook catalog|
+
+userId := 'Pepe'.
+password := '12345'.
+selledBook:=testObjectsFactory itemSellByTheStore.
+catalog:=testObjectsFactory defaultCatalog.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+
+self assert: (interfaz listPurchases: userId) equals: (ClientPurchasesList forSales: (Set with: (SaleItem for: 1 of:selledBook)) withTotalAmmount: 1).
+	! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 02:58:12' prior: 50561595!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator selledBook catalog|
+
+userId := 'Pepe'.
+password := '12345'.
+selledBook:=testObjectsFactory itemSellByTheStore.
+catalog:=testObjectsFactory defaultCatalog.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+
+self assert: (interfaz listPurchases: userId) equals: (ClientPurchasesList forSales: (Set with: (SaleItem for: 1 of:selledBook)) withTotalAmmount: testObjectsFactory itemSellByTheStorePrice).
+	! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 02:58:49' prior: 50561622!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId aCartId authenticator selledBook catalog|
+
+userId := 'Pepe'.
+password := '12345'.
+
+selledBook:=testObjectsFactory itemSellByTheStore.
+catalog:=testObjectsFactory defaultCatalog.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: aCartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) equals: (ClientPurchasesList forSales: (Set with: (SaleItem for: 1 of:selledBook)) withTotalAmmount: testObjectsFactory itemSellByTheStorePrice).
+	! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 02:59:06' prior: 50561650!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId cartId authenticator selledBook catalog|
+
+userId := 'Pepe'.
+password := '12345'.
+
+selledBook:=testObjectsFactory itemSellByTheStore.
+catalog:=testObjectsFactory defaultCatalog.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: cartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) equals: (ClientPurchasesList forSales: (Set with: (SaleItem for: 1 of:selledBook)) withTotalAmmount: testObjectsFactory itemSellByTheStorePrice).
+	! !
+
+!classRenamed: #SaleItem as: #PurchaseItem stamp: 'MMM 11/7/2022 03:03:02'!
+Smalltalk renameClassNamed: #SaleItem as: #PurchaseItem!
+!UserInterfaceTest methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 03:03:02' prior: 50561678!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId cartId authenticator selledBook catalog|
+
+userId := 'Pepe'.
+password := '12345'.
+
+selledBook:=testObjectsFactory itemSellByTheStore.
+catalog:=testObjectsFactory defaultCatalog.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: cartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) equals: (ClientPurchasesList forSales: (Set with: (PurchaseItem for: 1 of:selledBook)) withTotalAmmount: testObjectsFactory itemSellByTheStorePrice).
+	! !
+
+Object subclass: #SaleItem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #SaleItem category: 'TusLibros' stamp: 'MMM 11/7/2022 03:05:04'!
+Object subclass: #SaleItem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 03:05:20' prior: 50561710!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId cartId authenticator selledBook catalog|
+
+userId := 'Pepe'.
+password := '12345'.
+
+selledBook:=testObjectsFactory itemSellByTheStore.
+catalog:=testObjectsFactory defaultCatalog.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: cartId charging: testObjectsFactory notExpiredCreditCard .
+
+self assert: (interfaz listPurchases: userId) equals: (ClientPurchasesList forSales: (Set with: (SaleItem for: 1 of:selledBook)) withTotalAmmount: testObjectsFactory itemSellByTheStorePrice).
+	! !
+
+!classRemoval: #PurchaseItem stamp: 'MMM 11/7/2022 03:05:38'!
+Object subclass: #PurchaseItem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #PurchaseItem category: 'TusLibros' stamp: 'MMM 11/7/2022 03:09:33'!
+Object subclass: #PurchaseItem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 03:09:20' prior: 50561748!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId cartId authenticator selledBook catalog purchasesList |
+
+userId := 'Pepe'.
+password := '12345'.
+
+selledBook:=testObjectsFactory itemSellByTheStore.
+catalog:=testObjectsFactory defaultCatalog.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: cartId charging: testObjectsFactory notExpiredCreditCard .
+
+purchasesList:=interfaz listPurchases: userId.
+self assert: (purchasesList totalAmmount) equals: (testObjectsFactory itemSellByTheStorePrice).
+self assert: (purchasesList purchasesItems) asSet equals: (Set with: PurchaseItem for: 1 of:selledBook).
+	! !
+
+!classRemoval: #SaleItem stamp: 'MMM 11/7/2022 03:09:45'!
+Object subclass: #SaleItem
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #ClientPurchasesList stamp: 'MMM 11/7/2022 03:09:51'!
+Object subclass: #ClientPurchasesList
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #PurchasesList category: 'TusLibros' stamp: 'MMM 11/7/2022 03:11:31'!
+Object subclass: #PurchasesList
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 03:11:26' prior: 50561393!
+listPurchases: userId 
+	^ PurchasesList for: purchasesForClientId at: userId .! !
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 03:11:39'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 03:11:39'!
+ERROR!
+!PurchasesList class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 03:11:50'!
+for: aDictionary at: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aDictionary at: aString ! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 03:13:09' prior: 50561838!
+listPurchases: userId 
+	^ PurchasesList for: (purchasesForClientId at: userId).! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 03:51:28'!
+test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction
+
+| interfaz password userId cartId authenticator selledBook catalog purchasesList |
+
+userId := 'Pepe'.
+password := '12345'.
+
+selledBook:=testObjectsFactory itemSellByTheStore.
+catalog:=testObjectsFactory defaultCatalog.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: cartId charging: testObjectsFactory notExpiredCreditCard .
+
+purchasesList:=interfaz listPurchases: userId.
+self assert: (purchasesList totalAmmount) equals: (testObjectsFactory itemSellByTheStorePrice).
+self assert: (purchasesList purchasesItems) asSet equals: (Set with: PurchaseItem for: 1 of:selledBook).
+	! !
+
+!methodRemoval: UserInterfaceTest #test07ListPurchasesRemebersCartCheckouts stamp: 'MMM 11/7/2022 03:51:28'!
+test07ListPurchasesRemebersCartCheckouts
+
+| interfaz password userId cartId authenticator selledBook catalog purchasesList |
+
+userId := 'Pepe'.
+password := '12345'.
+
+selledBook:=testObjectsFactory itemSellByTheStore.
+catalog:=testObjectsFactory defaultCatalog.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: cartId charging: testObjectsFactory notExpiredCreditCard .
+
+purchasesList:=interfaz listPurchases: userId.
+self assert: (purchasesList totalAmmount) equals: (testObjectsFactory itemSellByTheStorePrice).
+self assert: (purchasesList purchasesItems) asSet equals: (Set with: PurchaseItem for: 1 of:selledBook).
+	!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 03:51:49'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 03:51:49'!
+ERROR!
+!PurchasesList class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 03:51:59'!
+for: anOrderedCollection 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: anOrderedCollection ! !
+!PurchasesList class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 03:52:38' prior: 50561934!
+for: sales 
+	^self new initializeFor: sales ! !
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 03:52:46'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 03:53:15'!
+ERROR!
+
+!classDefinition: #PurchasesList category: 'TusLibros' stamp: 'MMM 11/7/2022 03:53:25'!
+Object subclass: #PurchasesList
+	instanceVariableNames: 'sales_CHANGE_ME'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!PurchasesList methodsFor: 'initialization' stamp: 'MMM 11/7/2022 03:53:25'!
+initializeFor: sales 
+	self shouldBeImplemented.
+	sales_CHANGE_ME := sales.! !
+
+!methodRemoval: PurchasesList #initializeFor: stamp: 'MMM 11/7/2022 03:55:00'!
+initializeFor: sales 
+	self shouldBeImplemented.
+	sales_CHANGE_ME := sales.!
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 03:55:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 03:55:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 03:55:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 03:55:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 03:55:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 03:55:04'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 03:55:04'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 03:55:04'!
+ERROR!
+!PurchasesList methodsFor: 'initialization' stamp: 'MMM 11/7/2022 03:55:20'!
+initializeFor: sales 
+	self shouldBeImplemented.
+	sales_CHANGE_ME := sales.! !
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 04:02:33' prior: 50561865!
+test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction
+
+| interfaz password userId cartId authenticator selledBook catalog purchasesList |
+
+userId := 'Pepe'.
+password := '12345'.
+
+selledBook:=testObjectsFactory itemSellByTheStore.
+catalog:=testObjectsFactory defaultCatalog.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: cartId charging: testObjectsFactory notExpiredCreditCard .
+
+purchasesList:=interfaz listPurchases: userId.
+self assert: (purchasesList totalAmmount) equals: (testObjectsFactory itemSellByTheStorePrice).
+self assert: (purchasesList purchasesItems) asSet equals: (Set with: (PurchaseItem for: 1 of:selledBook)).
+	! !
+
+Object subclass: #PurchasesList
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #PurchasesList category: 'TusLibros' stamp: 'MMM 11/7/2022 04:02:45'!
+Object subclass: #PurchasesList
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!PurchasesList methodsFor: 'initialization' stamp: 'MMM 11/7/2022 04:03:09' prior: 50562001!
+initializeFor: purchaseItems 
+! !
+
+!classDefinition: #PurchasesList category: 'TusLibros' stamp: 'MMM 11/7/2022 04:03:44'!
+Object subclass: #PurchasesList
+	instanceVariableNames: 'items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!PurchasesList methodsFor: 'initialization' stamp: 'MMM 11/7/2022 04:03:42' prior: 50562049!
+initializeFor: purchaseItems 
+	items:=purchaseItems.! !
+
+!classRenamed: #PurchasesList as: #PurchasesSummary stamp: 'MMM 11/7/2022 04:04:48'!
+Smalltalk renameClassNamed: #PurchasesList as: #PurchasesSummary!
+!UserInterface methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 04:04:49' prior: 50561860!
+listPurchases: userId 
+	^ PurchasesSummary for: (purchasesForClientId at: userId).! !
+!PurchasesSummary methodsFor: 'initialization' stamp: 'MMM 11/7/2022 04:07:50' overrides: 16920235!
+initialize
+	items:=Dictionary new.! !
+!PurchasesSummary class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 04:08:37'!
+for 
+	^self new initialize. ! !
+
+!methodRemoval: PurchasesSummary class #for:at: stamp: 'MMM 11/7/2022 04:08:44'!
+for: aDictionary at: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aDictionary at: aString !
+
+!methodRemoval: PurchasesSummary class #for: stamp: 'MMM 11/7/2022 04:08:48'!
+for: sales 
+	^self new initializeFor: sales !
+
+!methodRemoval: PurchasesSummary #initializeFor: stamp: 'MMM 11/7/2022 04:09:09'!
+initializeFor: purchaseItems 
+	items:=purchaseItems.!
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 04:09:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 04:09:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 04:09:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 04:09:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 04:09:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 04:09:15'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:09:15'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:09:15'!
+ERROR!
+
+!methodRemoval: PurchasesSummary class #for stamp: 'MMM 11/7/2022 04:09:51'!
+for 
+	^self new initialize. !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 04:09:57'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 04:09:57'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 04:09:57'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 04:09:57'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 04:09:57'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 04:09:57'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:09:57'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:09:57'!
+ERROR!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:10:13' prior: 50562070!
+listPurchases: userId 
+	^ PurchasesSummary new.! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 04:10:23'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 04:10:23'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 04:10:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 04:10:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 04:10:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 04:10:24'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:10:24'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:10:24'!
+ERROR!
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 04:10:45'!
+totalAmmount
+	self shouldBeImplemented.! !
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 04:13:33' prior: 50562192!
+totalAmmount
+	^StoreTestObjectsFactory new itemSellByTheStorePrice .! !
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:13:36'!
+ERROR!
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 04:13:46'!
+purchasesItems
+	self shouldBeImplemented.! !
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 04:14:33' prior: 50562206!
+purchasesItems
+	^OrderedCollection with: (PurchaseItem  ).! !
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:14:46'!
+ERROR!
+!PurchaseItem class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 04:14:58'!
+for: aSmallInteger of: aString 
+	"DO NOT FORGET TO RENAME COLLABORATORS AND REMOVE THIS COMMENT!!!!"
+	self shouldBeImplemented.
+	^self new initializeFor: aSmallInteger of: aString ! !
+!PurchaseItem class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 04:15:28' prior: 50562220!
+for: aQuantity of: aBook 
+	^self new initializeFor: aQuantity of: aBook ! !
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:15:37'!
+ERROR!
+
+!classDefinition: #PurchaseItem category: 'TusLibros' stamp: 'MMM 11/7/2022 04:16:00'!
+Object subclass: #PurchaseItem
+	instanceVariableNames: 'quantity'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #PurchaseItem category: 'TusLibros' stamp: 'MMM 11/7/2022 04:16:01'!
+Object subclass: #PurchaseItem
+	instanceVariableNames: 'quantity book'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!PurchaseItem methodsFor: 'initialization' stamp: 'MMM 11/7/2022 04:16:01'!
+initializeFor: aQuantity of: aBook 
+	self shouldBeImplemented.
+	quantity := aQuantity.
+	book := aBook.! !
+!PurchaseItem methodsFor: 'initialization' stamp: 'MMM 11/7/2022 04:16:13' prior: 50562253!
+initializeFor: aQuantity of: aBook 
+	quantity := aQuantity.
+	book := aBook.! !
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:16:18'!
+FAILURE!
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 04:17:09' prior: 50562211!
+purchasesItems
+	^OrderedCollection with: (PurchaseItem for: 1 of:(StoreTestObjectsFactory new itemSellByTheStore ) ).! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 04:17:13'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 04:17:13'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 04:17:13'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 04:17:13'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 04:17:13'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 04:17:13'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:17:13'!
+FAILURE!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:17:13'!
+FAILURE!
+!PurchaseItem methodsFor: 'nil' stamp: 'MMM 11/7/2022 04:18:44'!
+equals: anotherThing
+^ true.! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 04:18:49'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 04:18:49'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 04:18:49'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 04:18:49'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 04:18:49'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 04:18:49'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:18:49'!
+FAILURE!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:18:49'!
+FAILURE!
+
+!methodRemoval: PurchaseItem #equals: stamp: 'MMM 11/7/2022 04:21:56'!
+equals: anotherThing
+^ true.!
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 04:35:02' prior: 50562007!
+test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction
+
+| interfaz password userId cartId authenticator selledBook catalog purchasesList notSelledBook |
+
+userId := 'Pepe'.
+password := '12345'.
+
+selledBook:=testObjectsFactory itemSellByTheStore.
+notSelledBook:=testObjectsFactory itemNotSellByTheStore .
+catalog:=testObjectsFactory defaultCatalog.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+cartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
+interfaz checkOutCart: cartId charging: testObjectsFactory notExpiredCreditCard .
+
+purchasesList:=interfaz listPurchases: userId.
+self assert: (purchasesList totalAmmount) equals: (testObjectsFactory itemSellByTheStorePrice).
+self assert: (purchasesList purchasesItems) size equals:1.
+self assert: (purchasesList includeSellFor: selledBook) equals:true.
+self assert: (purchasesList quantityFor:selledBook) equals:1.
+self assert: (purchasesList includeSellFor:notSelledBook) equals:false.
+self assert: (purchasesList quantityFor:notSelledBook) equals:0.
+	! !
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 04:35:31'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 04:35:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 04:35:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 04:35:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 04:35:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 04:35:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 04:35:35'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:35:35'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:35:35'!
+ERROR!
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 04:35:45'!
+includeSellFor: notSelledBook 
+	self shouldBeImplemented.! !
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 04:37:06' prior: 50562411!
+includeSellFor: aBook 
+	^items includesKey: aBook.! !
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:37:21'!
+FAILURE!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:37:21'!
+FAILURE!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:37:50'!
+FAILURE!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:39:58' prior: 50562160!
+listPurchases: userId 
+	| purchasesSummary |
+	purchasesSummary := PurchasesSummary new.
+	^purchasesSummary.! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:40:34' prior: 50562434!
+listPurchases: userId 
+	| purchasesSummary |
+	purchasesSummary := PurchasesSummary new.
+	
+	^purchasesSummary.! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:41:18' prior: 50560914!
+createCartFor: userId authenticatedWith: password 
+	"user == client"
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartsForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchasesForClientId at: userId put: OrderedCollection new.
+	clientIdForCartId at: actualCartId put: userId.
+	^maxCartIdUsed.! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:41:37' prior: 50562441!
+listPurchases: userId 
+	| purchasesSummary |
+	purchasesSummary := PurchasesSummary new.
+
+	^purchasesSummary.! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:43:00' prior: 50562448!
+createCartFor: userId authenticatedWith: password 
+	"user == client"
+	| actualCartId |
+	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
+	actualCartId := self unusedCartId.
+	cartsForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
+	purchasesForClientId at: userId put: OrderedCollection new.
+	clientIdForCartId at: actualCartId put: userId.
+	^maxCartIdUsed.! !
+!Cashier methodsFor: 'checkout - private' stamp: 'MMM 11/7/2022 04:46:22' prior: 50555453!
+createSale
+
+	^ Sale of: total forItems: (cart list).
+! !
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 04:46:31'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 04:46:31'!
+ERROR!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 04:46:31'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 04:46:31'!
+ERROR!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 04:46:31'!
+ERROR!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 04:46:31'!
+PASSED!
+!Sale class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 04:47:53'!
+of: aTotal forItems: forItems 
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal ! !
+
+!methodRemoval: Sale class #of: stamp: 'MMM 11/7/2022 04:47:53'!
+of: aTotal
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal !
+!Sale class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 04:48:48' prior: 50562513!
+of: aTotal forItems: items 
+
+	"should assert total is not negative or 0!!"
+	^self new initializeTotal: aTotal ! !
+!Sale class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 04:49:30' prior: 50562525!
+of: aTotal forItems: items 
+	^self new initializeTotal: aTotal forItems: items.! !
+!Sale methodsFor: 'initialization' stamp: 'MMM 11/7/2022 04:49:39'!
+initializeTotal: aTotal forItems: items
+
+	total := aTotal ! !
+
+!methodRemoval: Sale #initializeTotal: stamp: 'MMM 11/7/2022 04:49:42'!
+initializeTotal: aTotal
+
+	total := aTotal !
+
+!classDefinition: #Sale category: 'TusLibros' stamp: 'MMM 11/7/2022 04:51:30'!
+Object subclass: #Sale
+	instanceVariableNames: 'total witems'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Sale methodsFor: 'initialization' stamp: 'MMM 11/7/2022 04:51:28' prior: 50562537!
+initializeTotal: aTotal forItems: someItems
+	witems:=someItems.
+	total := aTotal.! !
+
+!classDefinition: #Sale category: 'TusLibros' stamp: 'MMM 11/7/2022 04:51:42'!
+Object subclass: #Sale
+	instanceVariableNames: 'total items'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Sale methodsFor: 'as yet unclassified' stamp: 'MMM 11/7/2022 04:51:42' prior: 50562552!
+initializeTotal: aTotal forItems: someItems
+	items:=someItems.
+	total := aTotal.! !
+
+!testRun: #CashierTest #test01CanNotCheckoutAnEmptyCart stamp: 'MMM 11/7/2022 04:52:19'!
+PASSED!
+
+!testRun: #CashierTest #test02CalculatedTotalIsCorrect stamp: 'MMM 11/7/2022 04:52:19'!
+PASSED!
+
+!testRun: #CashierTest #test03CanNotCheckoutWithAnExpiredCreditCart stamp: 'MMM 11/7/2022 04:52:19'!
+PASSED!
+
+!testRun: #CashierTest #test04CheckoutRegistersASale stamp: 'MMM 11/7/2022 04:52:19'!
+PASSED!
+
+!testRun: #CashierTest #test05CashierChargesCreditCardUsingMerchantProcessor stamp: 'MMM 11/7/2022 04:52:19'!
+PASSED!
+
+!testRun: #CashierTest #test06CashierDoesNotSaleWhenTheCreditCardHasNoCredit stamp: 'MMM 11/7/2022 04:52:19'!
+PASSED!
+
+!testRun: #CartTest #test01NewCartsAreCreatedEmpty stamp: 'MMM 11/7/2022 04:52:23'!
+PASSED!
+
+!testRun: #CartTest #test02CanNotAddItemsThatDoNotBelongToStore stamp: 'MMM 11/7/2022 04:52:23'!
+PASSED!
+
+!testRun: #CartTest #test03AfterAddingAnItemTheCartIsNotEmptyAnymore stamp: 'MMM 11/7/2022 04:52:23'!
+PASSED!
+
+!testRun: #CartTest #test04CanNotAddNonPositiveNumberOfItems stamp: 'MMM 11/7/2022 04:52:23'!
+PASSED!
+
+!testRun: #CartTest #test05CanNotAddMoreThanOneItemNotSellByTheStore stamp: 'MMM 11/7/2022 04:52:23'!
+PASSED!
+
+!testRun: #CartTest #test06CartRemembersAddedItems stamp: 'MMM 11/7/2022 04:52:23'!
+PASSED!
+
+!testRun: #CartTest #test07CartDoesNotHoldNotAddedItems stamp: 'MMM 11/7/2022 04:52:23'!
+PASSED!
+
+!testRun: #CartTest #test08CartRemembersTheNumberOfAddedItems stamp: 'MMM 11/7/2022 04:52:23'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 04:52:27'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 04:52:27'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 04:52:27'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 04:52:27'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 04:52:27'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 04:52:27'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:52:27'!
+FAILURE!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:52:27'!
+FAILURE!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:53:10' prior: 50562465!
+listPurchases: userId 
+	| purchasesSummary |
+	purchasesSummary := PurchasesSummary new.
+	^purchasesSummary.! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:54:32' prior: 50562645!
+listPurchases: userId 
+	| purchasesSummary |
+	purchasesSummary := PurchasesSummary new.
+	(purchasesForClientId at: userId) do: [:aSale|].
+	^purchasesSummary.! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:55:21' prior: 50562652!
+listPurchases: userId 
+	| purchasesSummary |
+	purchasesSummary := PurchasesSummary new.
+	(purchasesForClientId at: userId) do: [:aSale|purchasesSummary addItems: aSale items].
+	^purchasesSummary.! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 04:56:31'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 04:56:31'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 04:56:31'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 04:56:31'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 04:56:31'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 04:56:31'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:56:31'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:56:31'!
+ERROR!
+!Sale methodsFor: 'items' stamp: 'MMM 11/7/2022 04:56:47'!
+items
+	self shouldBeImplemented.
+	^items! !
+!Sale methodsFor: 'items' stamp: 'MMM 11/7/2022 04:56:56' prior: 50562698!
+items
+	^items copy.! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 04:57:02'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 04:57:02'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 04:57:02'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 04:57:02'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 04:57:02'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 04:57:02'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:57:02'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 04:57:02'!
+ERROR!
+!PurchasesSummary methodsFor: 'building' stamp: 'MMM 11/7/2022 04:57:20'!
+addItems: aString 
+	self shouldBeImplemented.! !
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:57:46' prior: 50562661!
+listPurchases: userId 
+	| purchasesSummary |
+	purchasesSummary := PurchasesSummary new.
+	(purchasesForClientId at: userId) do: [:aSale|purchasesSummary addItems: (aSale items)].
+	^purchasesSummary.! !
+!PurchasesSummary methodsFor: 'building' stamp: 'MMM 11/7/2022 04:58:56' prior: 50562734!
+addItems: someItems
+	
+	self shouldBeImplemented.! !
+!PurchasesSummary methodsFor: 'initialization' stamp: 'MMM 11/7/2022 04:59:13' prior: 50562076 overrides: 16920235!
+initialize
+	items:=Bag new.! !
+!PurchasesSummary methodsFor: 'building' stamp: 'MMM 11/7/2022 04:59:40' prior: 50562749!
+addItems: someItems
+	items addAll: someItems.! !
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 04:59:51' prior: 50562416!
+includeSellFor: aBook 
+	^items includes: aBook.! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 05:00:20'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 05:00:20'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 05:00:20'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 05:00:20'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 05:00:20'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 05:00:20'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 05:00:20'!
+ERROR!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 05:00:20'!
+ERROR!
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 05:00:29'!
+quantityFor: notSelledBook 
+	self shouldBeImplemented.! !
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 05:00:56' prior: 50562796!
+quantityFor: aBook 
+^items quantityFor: aBook.! !
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 05:01:12' prior: 50562801!
+quantityFor: aBook 
+^items occurrencesOf: aBook.! !
+
+!testRun: #UserInterfaceTest #test01CanNotCreateCartWhitInvalidUser stamp: 'MMM 11/7/2022 05:01:18'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test02ListNewCartReturnsEmptyList stamp: 'MMM 11/7/2022 05:01:18'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test03ListCartRemembersAddedItems stamp: 'MMM 11/7/2022 05:01:18'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test04CanNotAddItemToAnInvalidCart stamp: 'MMM 11/7/2022 05:01:18'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test05CanNotListInvalidCart stamp: 'MMM 11/7/2022 05:01:18'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test06CanNotCheckOutInvalidCart stamp: 'MMM 11/7/2022 05:01:18'!
+PASSED!
+
+!testRun: #UserInterfaceTest #test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction stamp: 'MMM 11/7/2022 05:01:18'!
+PASSED!
