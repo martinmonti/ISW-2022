@@ -248,7 +248,7 @@ debit: anAmount from: aCreditCard
 
 !classDefinition: #UserInterfaceTest category: 'TusLibros'!
 TestCase subclass: #UserInterfaceTest
-	instanceVariableNames: 'testObjectsFactory authenticationBehavior debitBehavior'
+	instanceVariableNames: 'testObjectsFactory authenticationBehavior debitBehavior selledBook selledBookPrice anotherSelledBook notSelledBook catalog creditCard anotherSelledBookPrice'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
@@ -258,15 +258,24 @@ createCartFor: userId authenticatedWith: password
 	authenticationBehavior value: userId value: password.! !
 
 
-!UserInterfaceTest methodsFor: 'setup' stamp: 'MMM 11/7/2022 01:24:04'!
+!UserInterfaceTest methodsFor: 'setup' stamp: 'MMM 11/7/2022 05:45:42'!
 setUp
 	testObjectsFactory := StoreTestObjectsFactory new.
+	
+	selledBook:=testObjectsFactory itemSellByTheStore.
+	selledBookPrice:=testObjectsFactory itemSellByTheStorePrice .
+	anotherSelledBook:=testObjectsFactory anotherItemSellByTheStore.
+	anotherSelledBookPrice:=testObjectsFactory anotherItemSellByTheStorePrice .
+	notSelledBook:=testObjectsFactory itemNotSellByTheStore .
+	catalog:=testObjectsFactory defaultCatalog.
+	creditCard := testObjectsFactory notExpiredCreditCard.
+	
 	authenticationBehavior := [ :anUser :aPassword | ].
 ! !
 
 
-!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/6/2022 23:12:18'!
-test01CanNotCreateCartWhitInvalidUser
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 05:49:35'!
+test01_CreateCart_CanNotWhitInvalidUser
 
 | interfaz password userId authenticator |
 
@@ -274,16 +283,15 @@ userId := 'Pepe'.
 password := '1234'.
 
 authenticator := AuthenticateSimulator for: false.
-interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
-.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
 
 self should: [ interfaz createCartFor: userId authenticatedWith: password.]
 	raise: Error - MessageNotUnderstood 
 	withExceptionDo: [:anError |
 			self assert: anError messageText = UserInterface invalidUserErrorMessage]! !
 
-!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/6/2022 23:12:17'!
-test02ListNewCartReturnsEmptyList
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 05:46:36'!
+test02_ListCart_WithNewCartReturnsEmptyList
 
 | interfaz password userId cartId authenticator |
 
@@ -291,51 +299,14 @@ userId := 'Pepe'.
 password := '12345'.
 
 authenticator := AuthenticateSimulator for: true.
-interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
 
 cartId := interfaz createCartFor: userId authenticatedWith: password.
 
 self assert: (interfaz listCart: cartId) equals: OrderedCollection new.! !
 
-!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/6/2022 23:12:18'!
-test03ListCartRemembersAddedItems
-
-| interfaz password userId aCartId item quantity authenticator |
-
-userId := 'Pepe'.
-password := '12345'.
-item := testObjectsFactory itemSellByTheStore.
-quantity := 1.
-
-authenticator := AuthenticateSimulator for: true.
-interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
-aCartId := interfaz createCartFor: userId authenticatedWith: password.
-interfaz addToCart: aCartId item: item withQuantityOf: quantity.
-
-self assert: (interfaz listCart: aCartId) equals: (OrderedCollection with: item).! !
-
-!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/6/2022 23:12:18'!
-test04CanNotAddItemToAnInvalidCart
-
-| interfaz password userId aCartId item quantity authenticator |
-
-userId := 'Pepe'.
-password := '12345'.
-item := testObjectsFactory itemSellByTheStore.
-quantity := 1.
-
-authenticator := AuthenticateSimulator for: true.
-interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
-aCartId := interfaz createCartFor: userId authenticatedWith: password.
-
-self should: [ interfaz addToCart: 3 item: item withQuantityOf: quantity.]
-	raise: Error - MessageNotUnderstood 
-	withExceptionDo: [:anError |
-			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
-! !
-
-!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/6/2022 23:12:18'!
-test05CanNotListInvalidCart
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 05:48:55'!
+test03_ListCart_RemembersAddedItems
 
 | interfaz password userId aCartId authenticator |
 
@@ -343,7 +314,40 @@ userId := 'Pepe'.
 password := '12345'.
 
 authenticator := AuthenticateSimulator for: true.
-interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: aCartId item: selledBook withQuantityOf: 1.
+
+self assert: (interfaz listCart: aCartId) equals: (OrderedCollection with: selledBook).! !
+
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 05:47:12'!
+test04_AddItem_CanNoAddToAnInvalidCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+aCartId := interfaz createCartFor: userId authenticatedWith: password.
+
+self should: [ interfaz addToCart: 3 item: selledBook withQuantityOf: 1.]
+	raise: Error - MessageNotUnderstood 
+	withExceptionDo: [:anError |
+			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
+! !
+
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 05:43:49'!
+test05_ListCart_CanNotListInvalidCart
+
+| interfaz password userId aCartId authenticator |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
 aCartId := interfaz createCartFor: userId authenticatedWith: password.
 
 self should: [ interfaz listCart: 3.]
@@ -352,50 +356,76 @@ self should: [ interfaz listCart: 3.]
 			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
 ! !
 
-!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/6/2022 23:12:18'!
-test06CanNotCheckOutInvalidCart
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 05:43:26'!
+test06_CheckOut_CanNotToAnInvalidCart
 
-| interfaz password userId aCartId authenticator |
-
-userId := 'Pepe'.
-password := '12345'.
+| interfaz authenticator |
 
 authenticator := AuthenticateSimulator for: true.
-interfaz := UserInterface withAuthenticator: authenticator catalog: testObjectsFactory defaultCatalog.
-aCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog .
 
-self should: [ interfaz checkOutCart: 3 charging: testObjectsFactory notExpiredCreditCard .]
+self should: [ interfaz checkOutCart: 3 charging: creditCard .]
 	raise: Error - MessageNotUnderstood 
 	withExceptionDo: [:anError |
 			self assert: anError messageText = UserInterface cartIdNotExistsErrorMessage]
 ! !
 
-!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 04:35:02'!
-test07ListPurchasesRemebersCartCheckoutsForSimpleTransaction
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 05:55:12'!
+test07_ListPurchases_MakeListForOneSale
 
-| interfaz password userId cartId authenticator selledBook catalog purchasesList notSelledBook |
+| interfaz password userId cartId authenticator purchasesList |
 
 userId := 'Pepe'.
 password := '12345'.
 
-selledBook:=testObjectsFactory itemSellByTheStore.
-notSelledBook:=testObjectsFactory itemNotSellByTheStore .
-catalog:=testObjectsFactory defaultCatalog.
-
 authenticator := AuthenticateSimulator for: true.
 interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+
 cartId := interfaz createCartFor: userId authenticatedWith: password.
 interfaz addToCart: cartId item: selledBook withQuantityOf: 1.
-interfaz checkOutCart: cartId charging: testObjectsFactory notExpiredCreditCard .
+interfaz checkOutCart: cartId charging: creditCard .
 
 purchasesList:=interfaz listPurchases: userId.
-self assert: (purchasesList totalAmmount) equals: (testObjectsFactory itemSellByTheStorePrice).
+
 self assert: (purchasesList purchasesItems) size equals:1.
 self assert: (purchasesList includeSellFor: selledBook) equals:true.
 self assert: (purchasesList quantityFor:selledBook) equals:1.
 self assert: (purchasesList includeSellFor:notSelledBook) equals:false.
 self assert: (purchasesList quantityFor:notSelledBook) equals:0.
-	! !
+self assert: (purchasesList totalAmmount) equals: selledBookPrice.
+! !
+
+!UserInterfaceTest methodsFor: 'tests' stamp: 'MMM 11/7/2022 06:04:02'!
+test08_ListPurchases_MakeListForManySales
+
+| interfaz password userId firstCartId authenticator secondCartId purchasesList |
+
+userId := 'Pepe'.
+password := '12345'.
+
+authenticator := AuthenticateSimulator for: true.
+interfaz := UserInterface withAuthenticator: authenticator catalog: catalog.
+
+firstCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: firstCartId item: selledBook withQuantityOf: 10.
+interfaz addToCart: firstCartId item: anotherSelledBook withQuantityOf: 20.
+interfaz checkOutCart: firstCartId charging: creditCard .
+
+secondCartId := interfaz createCartFor: userId authenticatedWith: password.
+interfaz addToCart: secondCartId item: selledBook withQuantityOf: 5.
+interfaz checkOutCart: secondCartId charging: creditCard .
+
+purchasesList:=interfaz listPurchases: userId.
+
+self assert: (purchasesList purchasesItems) size equals:2.
+self assert: (purchasesList includeSellFor: selledBook) equals:true.
+self assert: (purchasesList quantityFor:selledBook) equals:15.
+self assert: (purchasesList includeSellFor: anotherSelledBook ) equals:true.
+self assert: (purchasesList quantityFor:anotherSelledBook) equals:20.
+self assert: (purchasesList includeSellFor:notSelledBook) equals:false.
+self assert: (purchasesList quantityFor:notSelledBook) equals:0.
+self assert: (purchasesList totalAmmount) equals: (selledBookPrice*15+(anotherSelledBookPrice*20)).
+! !
 
 
 !classDefinition: #AuthenticateSimulator category: 'TusLibros'!
@@ -635,61 +665,43 @@ expiringOn: aMonth
 	^self new initializeExpiringOn: aMonth! !
 
 
-!classDefinition: #PurchaseItem category: 'TusLibros'!
-Object subclass: #PurchaseItem
-	instanceVariableNames: 'quantity book'
-	classVariableNames: ''
-	poolDictionaries: ''
-	category: 'TusLibros'!
-
-!PurchaseItem methodsFor: 'initialization' stamp: 'MMM 11/7/2022 04:16:13'!
-initializeFor: aQuantity of: aBook 
-	quantity := aQuantity.
-	book := aBook.! !
-
-"-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
-
-!classDefinition: 'PurchaseItem class' category: 'TusLibros'!
-PurchaseItem class
-	instanceVariableNames: ''!
-
-!PurchaseItem class methodsFor: 'instance creation' stamp: 'MMM 11/7/2022 04:15:28'!
-for: aQuantity of: aBook 
-	^self new initializeFor: aQuantity of: aBook ! !
-
-
 !classDefinition: #PurchasesSummary category: 'TusLibros'!
 Object subclass: #PurchasesSummary
-	instanceVariableNames: 'items'
+	instanceVariableNames: 'items totalAmmount'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
-!PurchasesSummary methodsFor: 'initialization' stamp: 'MMM 11/7/2022 04:59:13'!
+!PurchasesSummary methodsFor: 'initialization' stamp: 'MMM 11/7/2022 06:23:35'!
 initialize
-	items:=Bag new.! !
+	items:=Bag new.
+	totalAmmount:=0.! !
 
 
 !PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 04:59:51'!
 includeSellFor: aBook 
 	^items includes: aBook.! !
 
-!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 04:17:09'!
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 06:00:09'!
 purchasesItems
-	^OrderedCollection with: (PurchaseItem for: 1 of:(StoreTestObjectsFactory new itemSellByTheStore ) ).! !
+	| collapsedItems |
+	collapsedItems := Dictionary new.
+	items do: [:item| collapsedItems at: item put: (items occurrencesOf: item)].
+	^collapsedItems.! !
 
 !PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 05:01:12'!
 quantityFor: aBook 
 ^items occurrencesOf: aBook.! !
 
-!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 04:13:33'!
+!PurchasesSummary methodsFor: 'testing' stamp: 'MMM 11/7/2022 06:25:16'!
 totalAmmount
-	^StoreTestObjectsFactory new itemSellByTheStorePrice .! !
+	^totalAmmount .! !
 
 
-!PurchasesSummary methodsFor: 'building' stamp: 'MMM 11/7/2022 04:59:40'!
-addItems: someItems
-	items addAll: someItems.! !
+!PurchasesSummary methodsFor: 'building' stamp: 'MMM 11/7/2022 06:24:47'!
+addItems: someItems withPartialAmmount: aPartialAmmount 
+	items addAll: someItems.
+	totalAmmount:=totalAmmount +aPartialAmmount .! !
 
 
 !classDefinition: #Sale category: 'TusLibros'!
@@ -733,6 +745,15 @@ Object subclass: #StoreTestObjectsFactory
 	poolDictionaries: ''
 	category: 'TusLibros'!
 
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'MMM 11/7/2022 05:24:02'!
+anotherItemSellByTheStore
+	^ 'anotherValidBook'.! !
+
+!StoreTestObjectsFactory methodsFor: 'items' stamp: 'MMM 11/7/2022 05:24:25'!
+anotherItemSellByTheStorePrice
+	
+	^15! !
+
 !StoreTestObjectsFactory methodsFor: 'items' stamp: 'HernanWilkinson 6/17/2013 18:08'!
 itemNotSellByTheStore
 	
@@ -754,11 +775,12 @@ createCart
 	
 	^Cart acceptingItemsOf: self defaultCatalog! !
 
-!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'HernanWilkinson 6/17/2013 18:08'!
+!StoreTestObjectsFactory methodsFor: 'cart' stamp: 'MMM 11/7/2022 05:26:19'!
 defaultCatalog
 	
 	^ Dictionary new
 		at: self itemSellByTheStore put: self itemSellByTheStorePrice;
+		at: self anotherItemSellByTheStore put: self anotherItemSellByTheStorePrice;
 		yourself ! !
 
 
@@ -810,32 +832,28 @@ addToCart: aCartId item: anItem withQuantityOf: aQuantity
 	cart := cartsForCartId at: aCartId ifAbsent: [^self error: self class cartIdNotExistsErrorMessage].
 	cart add: aQuantity of: anItem.! !
 
-!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 01:16:00'!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 06:17:37'!
 checkOutCart: aCartId charging: aCreditCard 
-	| cart cashier clientId clientPurchases |
+	| cart cashier clientId |
 	cart := cartsForCartId at: aCartId ifAbsent: [self error: self class cartIdNotExistsErrorMessage].
 	clientId := clientIdForCartId at: aCartId ifAbsent: ["ERROR"].
-	clientPurchases := purchasesForClientId at: clientId.
+	(purchasesForClientId includesKey: clientId) ifFalse: [purchasesForClientId at: clientId put: OrderedCollection new.].
 	cashier := Cashier 
 		toCheckout: cart
 		charging: aCreditCard
 		throught: self
 		on: DateAndTime now
-		registeringOn: clientPurchases.
-
+		registeringOn: (purchasesForClientId at: clientId).
 	cashier checkOut.
-	purchasesForClientId at: clientId put: clientPurchases.
-	
 	^self newTransactionId! !
 
-!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:43:00'!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 06:15:36'!
 createCartFor: userId authenticatedWith: password 
 	"user == client"
 	| actualCartId |
 	(authenticator canAuthenticate) ifFalse: [self error: self class invalidUserErrorMessage].
 	actualCartId := self unusedCartId.
 	cartsForCartId at: actualCartId put: (Cart acceptingItemsOf: catalog).
-	purchasesForClientId at: userId put: OrderedCollection new.
 	clientIdForCartId at: actualCartId put: userId.
 	^maxCartIdUsed.! !
 
@@ -845,11 +863,11 @@ listCart: aCartId
 	cart := cartsForCartId at: aCartId ifAbsent: [^self error: self class cartIdNotExistsErrorMessage].
 	^cart list! !
 
-!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 04:57:46'!
+!UserInterface methodsFor: 'interface functions' stamp: 'MMM 11/7/2022 06:22:54'!
 listPurchases: userId 
 	| purchasesSummary |
 	purchasesSummary := PurchasesSummary new.
-	(purchasesForClientId at: userId) do: [:aSale|purchasesSummary addItems: (aSale items)].
+	(purchasesForClientId at: userId) do: [:aSale|purchasesSummary addItems: (aSale items) withPartialAmmount: (aSale total)].
 	^purchasesSummary.! !
 
 
